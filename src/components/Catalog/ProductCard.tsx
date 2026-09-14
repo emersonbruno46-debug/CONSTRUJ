@@ -1,5 +1,6 @@
 import React from 'react';
-import { Plus, Check } from 'lucide-react';
+import { Plus, Check, SlidersHorizontal } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { Product } from '../../types/catalog';
 
 interface ProductCardProps {
@@ -15,20 +16,32 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onQuickAdd,
   isAdded
 }) => {
+  const shouldReduceMotion = useReducedMotion();
   const hasVariants = Boolean(product.variantes && product.variantes.length > 0);
 
   const handleAddClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (hasVariants) {
-      // Se tem variantes obrigatórias, abre o modal para o cliente escolher
+      // Se tem variantes obrigatórias, abre o modal de detalhes para o cliente selecionar
       onOpenDetails(product);
     } else {
       onQuickAdd(product);
     }
   };
 
+  const EASE_CUBIC: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
   return (
-    <article className="product-card" aria-labelledby={`prod-title-${product.id}`}>
+    <motion.article
+      className="product-card"
+      aria-labelledby={`prod-title-${product.id}`}
+      layout={!shouldReduceMotion}
+      initial={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.98 }}
+      animate={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
+      exit={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.98 }}
+      transition={{ duration: 0.2, ease: EASE_CUBIC }}
+      whileTap={shouldReduceMotion ? undefined : { scale: 0.985 }}
+    >
       {product.demonstrativo && (
         <span className="product-card-badge">Catálogo ilustrativo</span>
       )}
@@ -53,7 +66,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           width="260"
           height="260"
           onError={(e) => {
-            // Imagem fallback elegante caso arquivo não exista
             (e.currentTarget as HTMLElement).style.display = 'none';
           }}
         />
@@ -80,18 +92,29 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="product-card-footer">
           <button
             type="button"
-            className="btn-add-quote"
+            className={`btn-add-quote ${isAdded ? 'added' : ''}`}
             onClick={handleAddClick}
-            aria-label={`Adicionar ${product.nome} ao orçamento`}
+            aria-label={
+              isAdded
+                ? `${product.nome} adicionado ao orçamento`
+                : hasVariants
+                ? `Escolher opções para ${product.nome}`
+                : `Adicionar ${product.nome} ao orçamento`
+            }
           >
             {isAdded ? (
               <>
-                <Check size={16} />
-                <span>Adicionado à lista</span>
+                <Check size={16} aria-hidden="true" />
+                <span>Adicionado</span>
+              </>
+            ) : hasVariants ? (
+              <>
+                <SlidersHorizontal size={16} aria-hidden="true" />
+                <span>Escolher opções</span>
               </>
             ) : (
               <>
-                <Plus size={16} />
+                <Plus size={16} aria-hidden="true" />
                 <span>Adicionar ao orçamento</span>
               </>
             )}
@@ -106,6 +129,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </button>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 };

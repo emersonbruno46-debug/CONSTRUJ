@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, FileText, Menu, X } from 'lucide-react';
 import { companyData } from '../../data/company';
+import { ConstruJNavIndicator } from './ConstruJNavIndicator';
+import { ConstruJQuoteCount } from './ConstruJQuoteCount';
 import './Header.css';
 
 interface HeaderProps {
@@ -72,18 +74,11 @@ export const Header: React.FC<HeaderProps> = ({
             />
           </a>
 
-          {/* Navegação Desktop */}
-          <nav className="nav-desktop" aria-label="Navegação principal">
-            {navItems.map((item) => (
-              <a
-                key={item.id}
-                href={item.href}
-                className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
+          {/* Navegação Desktop com Indicador Deslizante */}
+          <ConstruJNavIndicator
+            items={navItems}
+            activeSection={activeSection}
+          />
 
           {/* Botões de Ação */}
           <div className="header-actions">
@@ -95,11 +90,7 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <FileText size={18} aria-hidden="true" />
               <span>Meu orçamento</span>
-              {quoteCount > 0 && (
-                <span className="quote-count-badge" aria-hidden="true">
-                  {quoteCount}
-                </span>
-              )}
+              <ConstruJQuoteCount count={quoteCount} />
             </button>
 
             {/* Botão Hambúrguer Mobile */}

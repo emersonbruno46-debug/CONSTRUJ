@@ -1,0 +1,100 @@
+.constru-j-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  min-height: 48px;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: background-color var(--motion-micro), border-color var(--motion-micro), box-shadow var(--motion-micro);
+}
+
+.action-btn-text {
+  position: relative;
+  z-index: 1;
+}
+
+.action-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Variantes */
+.btn-action-primary {
+  background-color: var(--color-primary-green);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(22, 117, 42, 0.25);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-action-primary:hover {
+    background-color: var(--color-primary-green-hover);
+    box-shadow: 0 6px 18px rgba(22, 117, 42, 0.32);
+  }
+}
+
+.btn-action-secondary {
+  background-color: transparent;
+  color: var(--color-primary-green);
+  border: 1.5px solid var(--color-primary-green);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-action-secondary:hover {
+    background-color: var(--color-primary-green-light);
+    border-color: var(--color-primary-green-hover);
+  }
+}
+
+.btn-action-white {
+  background-color: #ffffff;
+  color: var(--color-primary-green);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-action-white:hover {
+    background-color: #f7faf7;
+    color: var(--color-primary-green-hover);
+  }
+}
+
+.btn-action-orange {
+  background-color: var(--color-brand-orange);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 128, 17, 0.25);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-action-orange:hover {
+    background-color: var(--color-brand-orange-hover);
+  }
+}
+
+.btn-action-link {
+  background: transparent;
+  color: var(--color-primary-green);
+  padding: 4px 0;
+  min-height: auto;
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-action-link:hover {
+    border-bottom-color: var(--color-primary-green);
+  }
+}

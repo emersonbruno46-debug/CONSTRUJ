@@ -1,6 +1,9 @@
 import React from 'react';
 import { ShoppingBag, MessageCircle, MapPin } from 'lucide-react';
 import { companyData } from '../../data/company';
+import { ConstruJReveal } from '../Motion/ConstruJReveal';
+import { ConstruJBrandUnderline } from '../Motion/ConstruJBrandUnderline';
+import { ConstruJActionButton } from '../UI/ConstruJActionButton';
 import './Hero.css';
 
 interface HeroProps {
@@ -19,41 +22,47 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Lado Esquerdo: Mensagem Oficial */}
           <div className="hero-content">
             <span className="hero-eyebrow">CONSTRU J</span>
+            {/* H1 visível no primeiro frame sem atraso */}
             <h1 id="hero-title" className="hero-title">
               Tudo para construir e reformar, em um só lugar.
             </h1>
-            <p className="hero-description">
-              Materiais de construção e acabamentos em Rio Pardo de Minas.
-            </p>
 
-            <div className="hero-actions">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={onExploreCatalog}
-                id="btn-explorar-produtos"
-              >
-                <ShoppingBag size={20} aria-hidden="true" />
-                <span>Explorar produtos</span>
-              </button>
+            {/* Subtítulo e Ações com Reveal Discreto */}
+            <ConstruJReveal delay={0.06} yOffset={12} duration={0.42}>
+              <p className="hero-description">
+                Materiais de construção e acabamentos em Rio Pardo de Minas.
+              </p>
 
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={onOpenQuoteWhatsApp}
-                id="btn-pedir-orcamento-hero"
-              >
-                <MessageCircle size={20} aria-hidden="true" />
-                <span>Pedir orçamento</span>
-              </button>
-            </div>
+              <div className="hero-actions">
+                <ConstruJActionButton
+                  variant="primary"
+                  onClick={onExploreCatalog}
+                  id="btn-explorar-produtos"
+                  icon={<ShoppingBag size={18} aria-hidden="true" />}
+                  aria-label="Explorar produtos do catálogo"
+                >
+                  Explorar produtos
+                </ConstruJActionButton>
 
-            <div className="hero-signature" aria-label="Slogan oficial da Constru J">
-              {companyData.slogan}
-            </div>
+                <ConstruJActionButton
+                  variant="secondary"
+                  onClick={onOpenQuoteWhatsApp}
+                  id="btn-pedir-orcamento-hero"
+                  icon={<MessageCircle size={18} aria-hidden="true" />}
+                  aria-label="Pedir orçamento pelo WhatsApp"
+                >
+                  Pedir orçamento
+                </ConstruJActionButton>
+              </div>
+
+              <div className="hero-signature-wrapper" aria-label="Slogan oficial da Constru J">
+                <span className="hero-signature">{companyData.slogan}</span>
+                <ConstruJBrandUnderline />
+              </div>
+            </ConstruJReveal>
           </div>
 
-          {/* Lado Direito: Foto Real da Fachada */}
+          {/* Lado Direito: Foto Real da Fachada (carregamento imediato sem reveal) */}
           <div className="hero-media">
             <div className="hero-orange-accent" aria-hidden="true"></div>
             <div className="hero-image-wrapper">

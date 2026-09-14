@@ -7,6 +7,7 @@ import { StoreSection } from './components/StoreSection/StoreSection';
 import { ContactSection } from './components/ContactSection/ContactSection';
 import { Footer } from './components/Footer/Footer';
 import { QuoteDrawer } from './components/QuoteDrawer/QuoteDrawer';
+import { ConstruJFloatingBar } from './components/QuoteDrawer/ConstruJFloatingBar';
 import { Toast } from './components/UI/Toast';
 import { useQuote } from './hooks/useQuote';
 import { ProductCategory, Product, ProductVariant } from './types/catalog';
@@ -30,6 +31,26 @@ export const App: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory | 'all'>('all');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState('inicio');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Monitora modais abertos no DOM para ocultar a barra flutuante
+  useEffect(() => {
+    const checkModal = () => {
+      setIsModalOpen(document.body.classList.contains('modal-open'));
+    };
+    const observer = new MutationObserver(checkModal);
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
+  // Adiciona espaçamento inferior no mobile quando a barra flutuante estiver ativa
+  useEffect(() => {
+    const hasFloating = totalDistinctItems > 0 && !isQuoteOpen && !isModalOpen;
+    document.body.classList.toggle('has-floating-bar', hasFloating);
+    return () => {
+      document.body.classList.remove('has-floating-bar');
+    };
+  }, [totalDistinctItems, isQuoteOpen, isModalOpen]);
 
   // Track scroll position to highlight active navigation link
   useEffect(() => {
@@ -120,6 +141,14 @@ export const App: React.FC = () => {
 
       {/* Rodapé Institucional */}
       <Footer />
+
+      {/* Barra Flutuante Mobile de Meu Orçamento */}
+      <ConstruJFloatingBar
+        itemCount={totalDistinctItems}
+        isOpen={isQuoteOpen}
+        isAnyModalOpen={isModalOpen}
+        onOpen={() => setIsQuoteOpen(true)}
+      />
 
       {/* Gaveta / Modal de Meu Orçamento */}
       <QuoteDrawer

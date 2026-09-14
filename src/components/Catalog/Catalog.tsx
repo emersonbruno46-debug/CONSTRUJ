@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { AnimatePresence } from 'motion/react';
 import { SearchAndFilter } from './SearchAndFilter';
 import { ProductCard } from './ProductCard';
 import { ProductDetailModal } from './ProductDetailModal';
@@ -7,6 +8,7 @@ import { productsData } from '../../data/products';
 import { matchesSearch } from '../../utils/normalize';
 import { PackageOpen, MessageCircle } from 'lucide-react';
 import { companyData } from '../../data/company';
+import { ConstruJReveal } from '../Motion/ConstruJReveal';
 import './Catalog.css';
 
 interface CatalogProps {
@@ -59,46 +61,50 @@ export const Catalog: React.FC<CatalogProps> = ({
   return (
     <section id="catalogo" className="catalog-section" aria-labelledby="catalog-title">
       <div className="container">
-        {/* Cabeçalho do Catálogo */}
-        <div className="catalog-header">
-          <div className="catalog-header-top">
-            <div>
-              <span className="section-eyebrow">Catálogo Completo</span>
-              <h2 id="catalog-title" className="section-title">
-                Encontre o material certo para sua obra
-              </h2>
-              <p className="section-subtitle">
-                Qualidade, variedade e o suporte que você precisa, do início ao acabamento.
-              </p>
+        {/* Cabeçalho do Catálogo com Reveal na primeira aparição */}
+        <ConstruJReveal yOffset={10}>
+          <div className="catalog-header">
+            <div className="catalog-header-top">
+              <div>
+                <span className="section-eyebrow">Catálogo Completo</span>
+                <h2 id="catalog-title" className="section-title">
+                  Encontre o material certo para sua obra
+                </h2>
+                <p className="section-subtitle">
+                  Qualidade, variedade e o suporte que você precisa, do início ao acabamento.
+                </p>
+              </div>
+
+              <div className="catalog-sticker" aria-hidden="true">
+                Sua obra mais forte começa aqui
+              </div>
             </div>
 
-            <div className="catalog-sticker" aria-hidden="true">
-              Sua obra mais forte começa aqui
-            </div>
+            {/* Barra de Busca e Filtros */}
+            <SearchAndFilter
+              searchTerm={searchTerm}
+              onSearchChange={setSearchTerm}
+              selectedCategory={selectedCategory}
+              onSelectCategory={onSelectCategory}
+              totalResults={filteredProducts.length}
+            />
           </div>
+        </ConstruJReveal>
 
-          {/* Barra de Busca e Filtros */}
-          <SearchAndFilter
-            searchTerm={searchTerm}
-            onSearchChange={setSearchTerm}
-            selectedCategory={selectedCategory}
-            onSelectCategory={onSelectCategory}
-            totalResults={filteredProducts.length}
-          />
-        </div>
-
-        {/* Grid de Produtos */}
+        {/* Grid de Produtos com layout coordenado sem remontar toda a grade */}
         {filteredProducts.length > 0 ? (
           <div className="products-grid">
-            {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onOpenDetails={setSelectedProductForModal}
-                onQuickAdd={handleQuickAdd}
-                isAdded={recentlyAddedId === product.id}
-              />
-            ))}
+            <AnimatePresence mode="popLayout">
+              {filteredProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onOpenDetails={setSelectedProductForModal}
+                  onQuickAdd={handleQuickAdd}
+                  isAdded={recentlyAddedId === product.id}
+                />
+              ))}
+            </AnimatePresence>
           </div>
         ) : (
           /* Estado Vazio */

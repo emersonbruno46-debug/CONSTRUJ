@@ -97,9 +97,12 @@
   font-weight: 600;
   font-size: var(--font-size-base);
   color: var(--color-text-main);
-  padding: 8px 4px;
+  padding: 8px 6px;
   position: relative;
   transition: color var(--transition-fast);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .nav-link:hover,
@@ -107,10 +110,15 @@
   color: var(--color-primary-green);
 }
 
-.nav-link.active::after {
-  content: '';
+.nav-link-text {
+  position: relative;
+  z-index: 1;
+}
+
+.nav-indicator-sliding,
+.nav-indicator-static {
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   width: 100%;
   height: 3px;

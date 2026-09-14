@@ -66,16 +66,18 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  transition: all var(--transition-fast);
+  transition: transform var(--motion-micro) var(--motion-ease), border-color var(--motion-micro), box-shadow var(--motion-micro);
   cursor: pointer;
   box-shadow: var(--shadow-sm);
   padding-bottom: 12px;
 }
 
-.category-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--color-primary-green);
-  box-shadow: var(--shadow-md);
+@media (hover: hover) and (pointer: fine) {
+  .category-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-primary-green);
+    box-shadow: var(--shadow-md);
+  }
 }
 
 .category-card:focus-visible {

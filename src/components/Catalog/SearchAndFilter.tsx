@@ -1,7 +1,7 @@
 import React from 'react';
-import { Search, X, Layers, Paintbrush, Wrench, Droplets, Zap, Building2, LayoutGrid } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import { ProductCategory } from '../../types/catalog';
-import { categoriesData } from '../../data/categories';
+import { ConstruJCategoryFilters } from './ConstruJCategoryFilters';
 
 interface SearchAndFilterProps {
   searchTerm: string;
@@ -18,32 +18,11 @@ export const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
   onSelectCategory,
   totalResults
 }) => {
-  const getCategoryIcon = (catId: ProductCategory | 'all') => {
-    switch (catId) {
-      case 'all':
-        return <LayoutGrid size={16} aria-hidden="true" />;
-      case 'pisos':
-        return <Layers size={16} aria-hidden="true" />;
-      case 'tintas':
-        return <Paintbrush size={16} aria-hidden="true" />;
-      case 'ferramentas':
-        return <Wrench size={16} aria-hidden="true" />;
-      case 'hidraulica':
-        return <Droplets size={16} aria-hidden="true" />;
-      case 'eletrica':
-        return <Zap size={16} aria-hidden="true" />;
-      case 'basicos':
-        return <Building2 size={16} aria-hidden="true" />;
-      default:
-        return null;
-    }
-  };
-
   const hasActiveFilters = searchTerm.trim() !== '' || selectedCategory !== 'all';
 
   return (
     <div className="catalog-controls">
-      {/* Input de Busca com debounce visual e botão de limpar */}
+      {/* Input de Busca com botão de limpar */}
       <div className="search-input-wrapper">
         <Search size={20} className="search-icon" aria-hidden="true" />
         <input
@@ -66,35 +45,13 @@ export const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
         )}
       </div>
 
-      {/* Chips de Categorias */}
-      <div className="category-chips-row" role="tablist" aria-label="Filtrar por categoria">
-        <button
-          type="button"
-          className={`chip-btn ${selectedCategory === 'all' ? 'active' : ''}`}
-          onClick={() => onSelectCategory('all')}
-          role="tab"
-          aria-selected={selectedCategory === 'all'}
-        >
-          {getCategoryIcon('all')}
-          <span>Todos</span>
-        </button>
+      {/* Chips de Categorias com Cápsula Deslizante */}
+      <ConstruJCategoryFilters
+        selectedCategory={selectedCategory}
+        onSelectCategory={onSelectCategory}
+      />
 
-        {categoriesData.map((cat) => (
-          <button
-            key={cat.id}
-            type="button"
-            className={`chip-btn ${selectedCategory === cat.id ? 'active' : ''}`}
-            onClick={() => onSelectCategory(cat.id)}
-            role="tab"
-            aria-selected={selectedCategory === cat.id}
-          >
-            {getCategoryIcon(cat.id)}
-            <span>{cat.nome}</span>
-          </button>
-        ))}
-      </div>
-
-      {/* Status de Resultados */}
+      {/* Status de Resultados com Fade Suave */}
       <div className="catalog-status-bar" aria-live="polite">
         <span>
           {totalResults === 1

@@ -78,27 +78,20 @@
   }
 }
 
+.hero-signature-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  margin-top: 10px;
+  transform: rotate(-2deg);
+}
+
 .hero-signature {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-style: italic;
   font-size: 1.35rem;
   font-weight: 700;
-  color: #384f70; /* Azul acinzentado do detalhe da marca */
-  position: relative;
+  color: #384f70;
   display: inline-block;
-  margin-top: 10px;
-  transform: rotate(-2deg);
-}
-
-.hero-signature::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--color-brand-orange), transparent);
-  border-radius: var(--radius-full);
 }
 
 /* Coluna de Mídia Direita — Foto Real da Fachada com Borda Laranja */

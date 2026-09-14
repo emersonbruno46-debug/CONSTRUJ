@@ -7,8 +7,10 @@ import {
   Zap,
   Building2
 } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { categoriesData } from '../../data/categories';
 import { ProductCategory } from '../../types/catalog';
+import { ConstruJReveal } from '../Motion/ConstruJReveal';
 import './Categories.css';
 
 interface CategoriesProps {
@@ -16,6 +18,8 @@ interface CategoriesProps {
 }
 
 export const Categories: React.FC<CategoriesProps> = ({ onSelectCategory }) => {
+  const shouldReduceMotion = useReducedMotion();
+
   const getCategoryIcon = (id: ProductCategory) => {
     switch (id) {
       case 'pisos':
@@ -38,34 +42,68 @@ export const Categories: React.FC<CategoriesProps> = ({ onSelectCategory }) => {
   return (
     <section className="categories-section" aria-labelledby="categories-heading">
       <div className="container">
-        <div className="categories-header-row">
-          <div>
-            <h2 id="categories-heading" className="categories-title">
-              O que sua obra precisa
-            </h2>
+        <ConstruJReveal yOffset={10}>
+          <div className="categories-header-row">
+            <div>
+              <h2 id="categories-heading" className="categories-title">
+                O que sua obra precisa
+              </h2>
+            </div>
+            <div className="categories-subtitle">
+              Qualidade e variedade para todas as etapas da sua obra.
+            </div>
           </div>
-          <div className="categories-subtitle">
-            Qualidade e variedade para todas as etapas da sua obra.
-          </div>
-        </div>
+        </ConstruJReveal>
 
         <div className="categories-grid">
-          {categoriesData.map((cat) => (
-            <button
-              key={cat.id}
-              type="button"
-              className="category-card"
-              onClick={() => onSelectCategory(cat.id)}
-              aria-label={`Ver produtos da categoria ${cat.nome}`}
-            >
-              <div className="category-image-container">
-                <div className="category-icon-fallback">
-                  {getCategoryIcon(cat.id)}
+          {categoriesData.map((cat, index) => {
+            const delay = Math.min(index * 0.045, 0.225);
+
+            if (shouldReduceMotion) {
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  className="category-card"
+                  onClick={() => onSelectCategory(cat.id)}
+                  aria-label={`Ver produtos da categoria ${cat.nome}`}
+                >
+                  <div className="category-image-container">
+                    <div className="category-icon-fallback">
+                      {getCategoryIcon(cat.id)}
+                    </div>
+                  </div>
+                  <span className="category-name">{cat.nome}</span>
+                </button>
+              );
+            }
+
+            return (
+              <motion.button
+                key={cat.id}
+                type="button"
+                className="category-card"
+                onClick={() => onSelectCategory(cat.id)}
+                aria-label={`Ver produtos da categoria ${cat.nome}`}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{
+                  duration: 0.38,
+                  delay,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="category-image-container">
+                  <div className="category-icon-fallback">
+                    {getCategoryIcon(cat.id)}
+                  </div>
                 </div>
-              </div>
-              <span className="category-name">{cat.nome}</span>
-            </button>
-          ))}
+                <span className="category-name">{cat.nome}</span>
+              </motion.button>
+            );
+          })}
         </div>
 
         <div className="categories-footnote">

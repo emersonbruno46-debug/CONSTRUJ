@@ -68,12 +68,20 @@
   --shadow-lg: 0 10px 24px -4px rgba(22, 40, 22, 0.12);
   --shadow-xl: 0 20px 35px -8px rgba(13, 56, 21, 0.18);
 
-  /* Transições */
+  /* Transições e Movimento (Sistema Comum de Movimento) */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 350ms cubic-bezier(0.16, 1, 0.3, 1);
 
+  --motion-micro: 160ms;
+  --motion-ui: 240ms;
+  --motion-reveal: 450ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
   /* Layout */
+  --header-height-desktop: 84px;
+  --header-height-mobile: 74px;
   --container-max-width: 1220px;
 }
 
@@ -358,3 +366,40 @@ img {
 body.modal-open {
   overflow: hidden;
 }
+
+/* Compensação de rolagem para o cabeçalho fixo (scroll-margin-top) */
+#inicio,
+#catalogo,
+#loja,
+#contato {
+  scroll-margin-top: calc(var(--header-height-desktop) + 20px);
+}
+
+@media (max-width: 768px) {
+  #inicio,
+  #catalogo,
+  #loja,
+  #contato {
+    scroll-margin-top: calc(var(--header-height-mobile) + 16px);
+  }
+}
+
+/* Espaçamento inferior reservado no mobile quando a barra flutuante estiver ativa */
+@media (max-width: 768px) {
+  body.has-floating-bar main {
+    padding-bottom: 80px;
+  }
+}
+
+/* Respeito Estrito a Movimento Reduzido (WCAG / Prefers-reduced-motion) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
