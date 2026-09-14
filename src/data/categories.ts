@@ -6,41 +6,47 @@ export const categoriesData: CategoryInfo[] = [
     nome: 'Pisos e porcelanatos',
     descricao: 'Revestimentos, pisos cerâmicos e porcelanatos para áreas internas e externas.',
     imagem: '/assets/categorias/pisos.webp',
-    icone: 'Layers'
+    icone: 'Layers',
+    thiingId: 'mosaic-tile'
   },
   {
     id: 'tintas',
     nome: 'Tintas',
     descricao: 'Tintas acrílicas, esmaltes, vernizes, impermeabilizantes e acessórios para pintura.',
     imagem: '/assets/categorias/tintas.webp',
-    icone: 'Paintbrush'
+    icone: 'Paintbrush',
+    thiingId: 'painting-bucket'
   },
   {
     id: 'ferramentas',
     nome: 'Ferramentas',
     descricao: 'Ferramentas manuais e elétricas para construção, montagem e acabamentos.',
     imagem: '/assets/categorias/ferramentas.webp',
-    icone: 'Wrench'
+    icone: 'Wrench',
+    thiingId: 'power-drill'
   },
   {
     id: 'hidraulica',
     nome: 'Hidráulica',
     descricao: 'Tubos, conexões, torneiras, caixas d’água e registros de qualidade.',
     imagem: '/assets/categorias/hidraulica.webp',
-    icone: 'Droplets'
+    icone: 'Droplets',
+    thiingId: 'faucet'
   },
   {
     id: 'eletrica',
     nome: 'Elétrica',
     descricao: 'Fios, cabos, disjuntores, tomadas, interruptores e iluminação LED.',
     imagem: '/assets/categorias/eletrica.webp',
-    icone: 'Zap'
+    icone: 'Zap',
+    thiingId: 'led-bulb'
   },
   {
     id: 'basicos',
     nome: 'Materiais básicos',
     descricao: 'Cimento, argamassa, tijolos, areia, brita e aço para a estrutura da obra.',
     imagem: '/assets/categorias/basicos.webp',
-    icone: 'Building2'
+    icone: 'Building2',
+    thiingId: 'brick'
   }
 ];

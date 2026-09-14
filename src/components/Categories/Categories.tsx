@@ -11,6 +11,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import { categoriesData } from '../../data/categories';
 import { ProductCategory } from '../../types/catalog';
 import { ConstruJReveal } from '../Motion/ConstruJReveal';
+import { ThiingIllustration } from '../UI/ThiingIllustration';
 import './Categories.css';
 
 interface CategoriesProps {
@@ -69,9 +70,13 @@ export const Categories: React.FC<CategoriesProps> = ({ onSelectCategory }) => {
                   aria-label={`Ver produtos da categoria ${cat.nome}`}
                 >
                   <div className="category-image-container">
-                    <div className="category-icon-fallback">
-                      {getCategoryIcon(cat.id)}
-                    </div>
+                    <ThiingIllustration
+                      name={cat.thiingId || cat.id}
+                      size={108}
+                      alt=""
+                      loading="lazy"
+                      className="category-thiing-asset"
+                    />
                   </div>
                   <span className="category-name">{cat.nome}</span>
                 </button>
@@ -96,9 +101,13 @@ export const Categories: React.FC<CategoriesProps> = ({ onSelectCategory }) => {
                 whileTap={{ scale: 0.98 }}
               >
                 <div className="category-image-container">
-                  <div className="category-icon-fallback">
-                    {getCategoryIcon(cat.id)}
-                  </div>
+                  <ThiingIllustration
+                    name={cat.thiingId || cat.id}
+                    size={108}
+                    alt=""
+                    loading="lazy"
+                    className="category-thiing-asset"
+                  />
                 </div>
                 <span className="category-name">{cat.nome}</span>
               </motion.button>

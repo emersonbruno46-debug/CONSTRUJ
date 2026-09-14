@@ -1,8 +1,9 @@
 import React from 'react';
-import { MapPin, Clock, MessageCircle, ArrowRight, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { companyData } from '../../data/company';
 import { ConstruJReveal } from '../Motion/ConstruJReveal';
 import { InteractiveHoverButton } from '../UI/interactive-hover-button';
+import { ThiingIllustration } from '../UI/ThiingIllustration';
 import './ContactSection.css';
 
 interface ContactSectionProps {
@@ -26,13 +27,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
         </ConstruJReveal>
 
         <div className="contact-grid">
-          {/* Card de Informações Oficiais */}
+          {/* Card de Informações Oficiais com Ilustrações 3D Thiings */}
           <ConstruJReveal delay={0.06} yOffset={14}>
             <div className="contact-info-card">
-              {/* Endereço */}
+              {/* Endereço com Location Pin 3D */}
               <div className="contact-row">
-                <div className="contact-icon-wrapper" aria-hidden="true">
-                  <MapPin size={22} />
+                <div className="contact-icon-wrapper">
+                  <ThiingIllustration
+                    name="location-pin"
+                    size={58}
+                    alt=""
+                    className="contact-thiing-asset"
+                  />
                 </div>
                 <div className="contact-details">
                   <h3>Endereço</h3>
@@ -42,10 +48,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                 </div>
               </div>
 
-              {/* WhatsApp e Telefone */}
+              {/* WhatsApp com Smartphone 3D */}
               <div className="contact-row">
-                <div className="contact-icon-wrapper" aria-hidden="true">
-                  <MessageCircle size={22} />
+                <div className="contact-icon-wrapper">
+                  <ThiingIllustration
+                    name="smartphone"
+                    size={58}
+                    alt=""
+                    className="contact-thiing-asset"
+                  />
                 </div>
                 <div className="contact-details">
                   <h3>WhatsApp e Atendimento</h3>
@@ -63,10 +74,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                 </div>
               </div>
 
-              {/* Horários */}
+              {/* Horários com Wall Clock 3D */}
               <div className="contact-row">
-                <div className="contact-icon-wrapper" aria-hidden="true">
-                  <Clock size={22} />
+                <div className="contact-icon-wrapper">
+                  <ThiingIllustration
+                    name="wall-clock"
+                    size={58}
+                    alt=""
+                    className="contact-thiing-asset"
+                  />
                 </div>
                 <div className="contact-details">
                   <h3>Horário de Funcionamento</h3>
@@ -78,13 +94,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
             </div>
           </ConstruJReveal>
 
-          {/* Card de Como Chegar com link para o mapa oficial */}
+          {/* Card de Localização com Location Pin 3D em Destaque */}
           <ConstruJReveal delay={0.12} yOffset={14}>
             <div className="location-visual-card">
-              <div className="location-radar-circle">
-                <div className="location-pin-inner" aria-hidden="true">
-                  <MapPin size={28} />
-                </div>
+              <div className="location-pin-3d-wrapper">
+                <ThiingIllustration
+                  name="location-pin"
+                  size={112}
+                  alt=""
+                  className="location-pin-3d-asset"
+                />
               </div>
 
               <div className="location-city-name">{companyData.cidade}</div>
@@ -110,12 +129,20 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
           </ConstruJReveal>
         </div>
 
-        {/* CTA Banner "Vamos começar sua obra?" */}
+        {/* CTA Banner "Vamos começar sua obra?" com Clipboard 3D */}
         <ConstruJReveal delay={0.15} yOffset={12}>
           <div className="cta-banner">
             <div className="cta-banner-content">
-              <div className="cta-banner-title">
-                Vamos começar sua obra?
+              <div className="cta-banner-left">
+                <ThiingIllustration
+                  name="clipboard"
+                  size={96}
+                  alt=""
+                  className="cta-clipboard-asset"
+                />
+                <div className="cta-banner-title">
+                  Vamos começar sua obra?
+                </div>
               </div>
 
               <InteractiveHoverButton

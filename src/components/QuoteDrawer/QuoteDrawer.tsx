@@ -12,6 +12,7 @@ import {
 import { QuoteItemRow } from './QuoteItemRow';
 import { QuoteItem } from '../../types/quote';
 import { companyData } from '../../data/company';
+import { ThiingIllustration } from '../UI/ThiingIllustration';
 import './QuoteDrawer.css';
 
 interface QuoteDrawerProps {
@@ -184,7 +185,12 @@ export const QuoteDrawer: React.FC<QuoteDrawerProps> = ({
         <div className="quote-drawer-body">
           {isListEmpty ? (
             <div className="quote-empty-view">
-              <ClipboardList size={52} className="quote-empty-icon" aria-hidden="true" />
+              <ThiingIllustration
+                name="clipboard"
+                size={96}
+                alt=""
+                className="quote-empty-clipboard-img"
+              />
               <div className="quote-empty-title">Sua lista está vazia</div>
               <p className="quote-empty-desc">
                 Navegue pelo catálogo e clique em &quot;Adicionar ao orçamento&quot; nos produtos que você precisa para sua obra.

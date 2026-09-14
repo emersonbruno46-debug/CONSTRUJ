@@ -110,6 +110,29 @@
   margin-bottom: 16px;
 }
 
+.store-heading-with-accent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.store-heading-with-accent .store-title {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.store-hard-hat-accent {
+  flex-shrink: 0;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.08));
+  transition: transform var(--motion-micro) var(--motion-ease);
+}
+
+.store-hard-hat-accent:hover {
+  transform: translateY(-2px) rotate(-4deg);
+}
+
 .store-title {
   font-size: var(--font-size-3xl);
   font-weight: 800;
@@ -122,6 +145,13 @@
 @media (min-width: 768px) {
   .store-title {
     font-size: var(--font-size-4xl);
+  }
+}
+
+@media (max-width: 520px) {
+  .store-hard-hat-accent {
+    width: 54px !important;
+    height: 54px !important;
   }
 }
 

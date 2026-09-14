@@ -3,6 +3,7 @@ import { MapPin, Check, Eye } from 'lucide-react';
 import { companyData } from '../../data/company';
 import { ConstruJReveal } from '../Motion/ConstruJReveal';
 import { InteractiveHoverButton } from '../UI/interactive-hover-button';
+import { ThiingIllustration } from '../UI/ThiingIllustration';
 import { ConstruJStoreCardsCarousel } from './ConstruJStoreCardsCarousel';
 import { ConstruJStoreGallery } from './ConstruJStoreGallery';
 import './StoreSection.css';
@@ -43,9 +44,17 @@ export const StoreSection: React.FC = () => {
                 <span>{companyData.cidade} • {companyData.estado}</span>
               </div>
 
-              <h2 id="store-heading" className="store-title">
-                Da base ao acabamento, conte com a gente.
-              </h2>
+              <div className="store-heading-with-accent">
+                <h2 id="store-heading" className="store-title">
+                  Da base ao acabamento, conte com a gente.
+                </h2>
+                <ThiingIllustration
+                  name="hard-hat"
+                  size={72}
+                  alt=""
+                  className="store-hard-hat-accent"
+                />
+              </div>
 
               <p className="store-description">
                 Materiais de construção e atendimento para ajudar nas escolhas da sua obra. Aqui você encontra tudo para reformar, construir ou ampliar com comodidade e suporte de quem conhece a sua região.

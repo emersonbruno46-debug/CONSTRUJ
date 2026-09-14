@@ -40,20 +40,26 @@
 
 .contact-row {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
+  align-items: center;
+  gap: 20px;
 }
 
 .contact-icon-wrapper {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background-color: var(--color-primary-green-light);
-  color: var(--color-primary-green);
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background-color: transparent;
+}
+
+@media (max-width: 640px) {
+  .contact-icon-wrapper {
+    width: 46px;
+    height: 46px;
+  }
 }
 
 .contact-details h3 {
@@ -101,28 +107,14 @@
   box-shadow: var(--shadow-sm);
 }
 
-.location-radar-circle {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: rgba(22, 117, 42, 0.12);
+.location-pin-3d-wrapper {
+  width: 112px;
+  height: 112px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   position: relative;
-}
-
-.location-pin-inner {
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  background-color: var(--color-primary-green);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 16px rgba(22, 117, 42, 0.35);
 }
 
 .location-city-name {
@@ -183,6 +175,20 @@
   .cta-banner-content {
     flex-direction: row;
     text-align: left;
+  }
+}
+
+.cta-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (max-width: 640px) {
+  .cta-banner-left {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
   }
 }
 

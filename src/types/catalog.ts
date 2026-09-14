@@ -43,4 +43,5 @@ export interface CategoryInfo {
   descricao: string;
   imagem: string;
   icone: string;
+  thiingId?: string;
 }
