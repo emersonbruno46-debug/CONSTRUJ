@@ -1,0 +1,199 @@
+/* ==========================================================================
+   SEÇÃO CONTATO E LOCALIZAÇÃO — ESTILOS
+   ========================================================================== */
+
+.contact-section {
+  padding: 80px 0 0;
+  background-color: var(--color-bg-body);
+}
+
+.contact-header {
+  margin-bottom: 40px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: stretch;
+  margin-bottom: 60px;
+}
+
+@media (min-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+  }
+}
+
+/* Coluna de Dados de Contato */
+.contact-info-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.contact-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-green-light);
+  color: var(--color-primary-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-details h3 {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 4px;
+}
+
+.contact-details p {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.contact-link {
+  color: var(--color-primary-green);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+.contact-note {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+  margin-top: 4px;
+}
+
+/* Card Visual de Localização / Como Chegar */
+.location-visual-card {
+  background: linear-gradient(135deg, #ebf5ea 0%, #d8ebd6 100%);
+  border: 1px solid #c5dfc2;
+  border-radius: var(--radius-xl);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.location-radar-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(22, 117, 42, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.location-pin-inner {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: var(--color-primary-green);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(22, 117, 42, 0.35);
+}
+
+.location-city-name {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  color: var(--color-text-main);
+  margin-bottom: 6px;
+}
+
+.location-state-sub {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+}
+
+.btn-como-chegar {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--color-primary-green);
+  color: #ffffff;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 14px rgba(22, 117, 42, 0.25);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-como-chegar:hover {
+  background-color: var(--color-primary-green-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(22, 117, 42, 0.3);
+}
+
+/* Banner de CTA Verde Inferior */
+.cta-banner {
+  background: linear-gradient(135deg, var(--color-primary-green) 0%, #125a22 100%);
+  color: #ffffff;
+  padding: 36px 32px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  margin-bottom: -36px;
+  position: relative;
+  z-index: 10;
+}
+
+.cta-banner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .cta-banner-content {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+.cta-banner-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .cta-banner-title {
+    font-size: var(--font-size-3xl);
+  }
+}

@@ -1,0 +1,117 @@
+/* ==========================================================================
+   RODAPÉ CONSTRU J — ESTILOS
+   ========================================================================== */
+
+.site-footer {
+  background-color: var(--color-brand-dark-forest);
+  color: #e2e8e2;
+  padding-top: 80px;
+  padding-bottom: 36px;
+  margin-top: 0;
+}
+
+.footer-top-row {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-top-row {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+/* Badge da Logo Oficial */
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .footer-brand-col {
+    align-items: flex-start;
+  }
+}
+
+.footer-logo-badge {
+  background-color: #ffffff;
+  padding: 8px 18px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.footer-logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-slogan {
+  font-size: var(--font-size-sm);
+  color: #c0d1bf;
+  font-weight: 600;
+}
+
+/* Meios de Pagamento no Atendimento */
+.footer-payments-col {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-payment-icon {
+  color: var(--color-brand-orange);
+  flex-shrink: 0;
+}
+
+.footer-payment-text h4 {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+.footer-payment-text p {
+  font-size: var(--font-size-xs);
+  color: #a3b8a2;
+}
+
+/* Links de Navegação e Copyright */
+.footer-bottom-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-top: 32px;
+  font-size: var(--font-size-xs);
+  color: #8fa68e;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-bottom-row {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.footer-nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-nav-links a:hover {
+  color: #ffffff;
+}

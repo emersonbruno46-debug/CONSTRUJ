@@ -1,0 +1,383 @@
+/* ==========================================================================
+   PAINEL DE MEU ORÇAMENTO (DRAWER / MODAL)
+   ========================================================================== */
+
+.quote-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  z-index: 150;
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.quote-drawer-panel {
+  background: var(--color-bg-surface);
+  width: 100%;
+  max-width: 440px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -6px 0 30px rgba(0, 0, 0, 0.15);
+  animation: slideInRight 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Cabeçalho do Drawer */
+.quote-drawer-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background-color: var(--color-bg-surface);
+}
+
+.quote-drawer-title-group h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  color: var(--color-text-main);
+  line-height: 1.2;
+}
+
+.quote-drawer-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+.quote-drawer-close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.quote-drawer-close-btn:hover {
+  background-color: #e2e6df;
+}
+
+/* Corpo / Lista de Itens */
+.quote-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Linha de Cada Item */
+.quote-item-card {
+  display: flex;
+  gap: 14px;
+  padding: 12px;
+  background-color: #fafbfa;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  position: relative;
+  transition: all var(--transition-fast);
+}
+
+.quote-item-card:hover {
+  border-color: #ccd4ca;
+}
+
+.quote-item-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-sm);
+  background-color: #ffffff;
+  border: 1px solid var(--color-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.quote-item-thumb img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.quote-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.quote-item-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.quote-item-name {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-main);
+  line-height: 1.3;
+}
+
+.quote-item-variant {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+  margin-top: 2px;
+}
+
+.quote-item-remove-btn {
+  color: var(--color-text-light);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast);
+}
+
+.quote-item-remove-btn:hover {
+  color: var(--color-brand-red);
+}
+
+/* Stepper de Quantidade */
+.quote-item-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.quote-item-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.quote-stepper-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--color-text-main);
+  font-weight: 700;
+}
+
+.quote-stepper-btn:hover {
+  background-color: var(--color-bg-subtle);
+}
+
+.quote-stepper-qty {
+  min-width: 36px;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+.quote-item-unit {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+/* Campo de Observações */
+.quote-observations-wrapper {
+  margin-top: 8px;
+}
+
+.quote-observations-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.quote-char-counter {
+  font-weight: 500;
+  color: var(--color-text-light);
+}
+
+.quote-textarea {
+  width: 100%;
+  height: 84px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-border);
+  background-color: #ffffff;
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-main);
+  resize: none;
+  transition: border-color var(--transition-fast);
+}
+
+.quote-textarea:focus {
+  border-color: var(--color-primary-green);
+  outline: none;
+}
+
+/* Rodapé do Drawer */
+.quote-drawer-footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-whatsapp-quote {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--color-primary-green);
+  color: #ffffff;
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 14px rgba(22, 117, 42, 0.25);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-whatsapp-quote:hover {
+  background-color: var(--color-primary-green-hover);
+  transform: translateY(-1px);
+}
+
+.quote-disclaimer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.quote-secondary-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.btn-copy-list,
+.btn-clear-list {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.btn-copy-list:hover {
+  color: var(--color-primary-green);
+}
+
+.btn-clear-list:hover {
+  color: var(--color-brand-red);
+}
+
+/* Bloco de Ofertas no Drawer (como no mockup 2) */
+.quote-offers-banner {
+  background-color: #fff8f0;
+  border: 1px solid #ffe2c6;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--color-text-main);
+  transition: background-color var(--transition-fast);
+}
+
+.quote-offers-banner:hover {
+  background-color: #ffeedb;
+}
+
+.quote-offers-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quote-offers-tag-icon {
+  color: var(--color-brand-orange);
+}
+
+.quote-offers-text strong {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-brand-orange);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.quote-offers-text span {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+/* Estado Vazio do Orçamento */
+.quote-empty-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  flex: 1;
+}
+
+.quote-empty-icon {
+  color: #a8b3a8;
+  margin-bottom: 16px;
+}
+
+.quote-empty-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.quote-empty-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  max-width: 280px;
+}
