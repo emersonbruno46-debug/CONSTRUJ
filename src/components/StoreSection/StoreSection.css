@@ -22,11 +22,13 @@
   }
 }
 
-/* Galeria Asimétrica de Fotos Reais */
+/* Container do Carrossel de Cartas da Loja */
 .store-gallery-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 0;
 }
 
 .store-photo-card {

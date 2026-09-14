@@ -3,7 +3,7 @@ import { ShoppingBag, MessageCircle, MapPin } from 'lucide-react';
 import { companyData } from '../../data/company';
 import { ConstruJReveal } from '../Motion/ConstruJReveal';
 import { ConstruJBrandUnderline } from '../Motion/ConstruJBrandUnderline';
-import { ConstruJActionButton } from '../UI/ConstruJActionButton';
+import { InteractiveHoverButton } from '../UI/interactive-hover-button';
 import './Hero.css';
 
 interface HeroProps {
@@ -34,25 +34,23 @@ export const Hero: React.FC<HeroProps> = ({
               </p>
 
               <div className="hero-actions">
-                <ConstruJActionButton
-                  variant="primary"
+                <InteractiveHoverButton
+                  variant="filled"
                   onClick={onExploreCatalog}
                   id="btn-explorar-produtos"
+                  text="Explorar produtos"
                   icon={<ShoppingBag size={18} aria-hidden="true" />}
                   aria-label="Explorar produtos do catálogo"
-                >
-                  Explorar produtos
-                </ConstruJActionButton>
+                />
 
-                <ConstruJActionButton
-                  variant="secondary"
+                <InteractiveHoverButton
+                  variant="orange"
                   onClick={onOpenQuoteWhatsApp}
                   id="btn-pedir-orcamento-hero"
+                  text="Pedir orçamento"
                   icon={<MessageCircle size={18} aria-hidden="true" />}
                   aria-label="Pedir orçamento pelo WhatsApp"
-                >
-                  Pedir orçamento
-                </ConstruJActionButton>
+                />
               </div>
 
               <div className="hero-signature-wrapper" aria-label="Slogan oficial da Constru J">
@@ -74,6 +72,10 @@ export const Hero: React.FC<HeroProps> = ({
                 height="540"
                 loading="eager"
               />
+              <div className="hero-glass-floating-pill" aria-hidden="true">
+                <span className="hero-badge-dot green" />
+                <span>Loja Física em Rio Pardo</span>
+              </div>
               <div className="hero-image-badge">
                 <span className="hero-badge-dot" aria-hidden="true"></span>
                 <MapPin size={14} aria-hidden="true" />

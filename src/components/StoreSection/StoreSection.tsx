@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { MapPin, ArrowRight, Check, Eye } from 'lucide-react';
+import { MapPin, Check, Eye } from 'lucide-react';
 import { companyData } from '../../data/company';
 import { ConstruJReveal } from '../Motion/ConstruJReveal';
-import { ConstruJActionButton } from '../UI/ConstruJActionButton';
-import { ConstruJStoreGallery, storePhotos } from './ConstruJStoreGallery';
+import { InteractiveHoverButton } from '../UI/interactive-hover-button';
+import { ConstruJStoreCardsCarousel } from './ConstruJStoreCardsCarousel';
+import { ConstruJStoreGallery } from './ConstruJStoreGallery';
 import './StoreSection.css';
 
 export const StoreSection: React.FC = () => {
@@ -26,47 +27,12 @@ export const StoreSection: React.FC = () => {
     <section id="loja" className="store-section" aria-labelledby="store-heading">
       <div className="container">
         <div className="store-grid">
-          {/* Lado Esquerdo: Galeria com fotos reais da loja física como gatilhos */}
+          {/* Lado Esquerdo: Carrossel Swiper Cards com as 10 fotos reais */}
           <div className="store-gallery-wrapper">
-            <button
-              type="button"
-              className="store-photo-card large"
-              onClick={(e) => handleOpenGallery(0, e)}
-              aria-label="Abrir foto da fachada na galeria"
-            >
-              <img
-                src={storePhotos[0].src}
-                alt={storePhotos[0].caption}
-                className="store-photo-img"
-                loading="lazy"
-                width="400"
-                height="500"
-              />
-              <span className="store-photo-tag">
-                <Eye size={14} aria-hidden="true" />
-                <span>Fachada (ampliar)</span>
-              </span>
-            </button>
-
-            <button
-              type="button"
-              className="store-photo-card wide"
-              onClick={(e) => handleOpenGallery(1, e)}
-              aria-label="Abrir foto do interior na galeria"
-            >
-              <img
-                src={storePhotos[1].src}
-                alt={storePhotos[1].caption}
-                className="store-photo-img"
-                loading="lazy"
-                width="400"
-                height="500"
-              />
-              <span className="store-photo-tag">
-                <Eye size={14} aria-hidden="true" />
-                <span>Interior • 10 fotos</span>
-              </span>
-            </button>
+            <ConstruJStoreCardsCarousel
+              onOpenPhoto={(index) => setActiveGalleryIndex(index)}
+              autoplay={true}
+            />
           </div>
 
           {/* Lado Direito: Texto Institucional com Reveal */}
@@ -107,17 +73,15 @@ export const StoreSection: React.FC = () => {
               </ul>
 
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
-                <ConstruJActionButton
-                  variant="link"
+                <InteractiveHoverButton
+                  variant="primary"
                   href={companyData.whatsapp.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   id="btn-falar-equipe"
-                  icon={<ArrowRight size={18} aria-hidden="true" />}
+                  text="Falar com a equipe"
                   aria-label="Falar com a equipe no WhatsApp"
-                >
-                  Falar com a equipe
-                </ConstruJActionButton>
+                />
 
                 <button
                   type="button"

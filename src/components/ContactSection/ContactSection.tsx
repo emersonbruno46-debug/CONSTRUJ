@@ -2,7 +2,7 @@ import React from 'react';
 import { MapPin, Clock, MessageCircle, ArrowRight, ExternalLink } from 'lucide-react';
 import { companyData } from '../../data/company';
 import { ConstruJReveal } from '../Motion/ConstruJReveal';
-import { ConstruJActionButton } from '../UI/ConstruJActionButton';
+import { InteractiveHoverButton } from '../UI/interactive-hover-button';
 import './ContactSection.css';
 
 interface ContactSectionProps {
@@ -92,17 +92,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                 {companyData.endereco.bairro} • {companyData.estado}
               </div>
 
-              <ConstruJActionButton
-                variant="primary"
+              <InteractiveHoverButton
+                variant="filled"
                 href={companyData.mapaLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 id="btn-como-chegar"
+                text="Como chegar"
                 icon={<ExternalLink size={18} aria-hidden="true" />}
                 aria-label="Abrir localização no Google Maps"
-              >
-                Como chegar
-              </ConstruJActionButton>
+              />
 
               <div style={{ marginTop: '16px', fontSize: '12px', color: 'var(--color-text-muted)' }}>
                 Destino verificado no Google Maps
@@ -119,15 +118,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
                 Vamos começar sua obra?
               </div>
 
-              <ConstruJActionButton
-                variant="white"
+              <InteractiveHoverButton
+                variant="primary"
                 onClick={onOpenQuote}
                 id="btn-cta-pedir-orcamento"
-                icon={<ArrowRight size={18} aria-hidden="true" />}
+                text="Pedir orçamento"
                 aria-label="Pedir orçamento agora"
-              >
-                Pedir orçamento
-              </ConstruJActionButton>
+              />
             </div>
           </div>
         </ConstruJReveal>
