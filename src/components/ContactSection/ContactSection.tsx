@@ -94,36 +94,49 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenQuote }) =
             </div>
           </ConstruJReveal>
 
-          {/* Card de Localização com Location Pin 3D em Destaque */}
+          {/* Card de Localização com Mapa Real Interativo do Google Maps */}
           <ConstruJReveal delay={0.12} yOffset={14}>
-            <div className="location-visual-card">
-              <div className="location-pin-3d-wrapper">
-                <ThiingIllustration
-                  name="location-pin"
-                  size={112}
-                  alt=""
-                  className="location-pin-3d-asset"
+            <div className="location-map-card">
+              {/* Badge superior com identificação da loja */}
+              <div className="location-map-badge-top">
+                <span className="location-map-dot-pulse" aria-hidden="true" />
+                <span>Loja Física Constru J</span>
+                <span className="location-map-tag-city">• {companyData.cidade}–{companyData.estado}</span>
+              </div>
+
+              {/* Iframe oficial do Google Maps com a localização exata */}
+              <div className="location-map-iframe-wrapper">
+                <iframe
+                  title="Localização oficial da Constru J no Google Maps"
+                  src="https://maps.google.com/maps?q=Constru+J+-+R.+T%C3%A1cito+de+Freitas+Costa,+414+-+Cid+Alta,+Rio+Pardo+de+Minas+-+MG,+39530-000&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="real-google-map-iframe"
                 />
               </div>
 
-              <div className="location-city-name">{companyData.cidade}</div>
-              <div className="location-state-sub">
-                {companyData.endereco.bairro} • {companyData.estado}
-              </div>
+              {/* Barra inferior flutuante com endereço real e botão de Como Chegar */}
+              <div className="location-map-footer-overlay">
+                <div className="location-map-footer-text">
+                  <strong>{companyData.endereco.logradouro}, {companyData.endereco.numero}</strong>
+                  <span>{companyData.endereco.bairro} — {companyData.cidade}/{companyData.estado}</span>
+                </div>
 
-              <InteractiveHoverButton
-                variant="filled"
-                href={companyData.mapaLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                id="btn-como-chegar"
-                text="Como chegar"
-                icon={<ExternalLink size={18} aria-hidden="true" />}
-                aria-label="Abrir localização no Google Maps"
-              />
-
-              <div style={{ marginTop: '16px', fontSize: '12px', color: 'var(--color-text-muted)' }}>
-                Destino verificado no Google Maps
+                <a
+                  href={companyData.mapaLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-como-chegar"
+                  id="btn-como-chegar"
+                  aria-label="Abrir rota no Google Maps"
+                >
+                  <span>Como chegar</span>
+                  <ExternalLink size={16} aria-hidden="true" />
+                </a>
               </div>
             </div>
           </ConstruJReveal>
