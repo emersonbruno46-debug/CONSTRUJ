@@ -197,6 +197,21 @@ export async function initializeDatabase(): Promise<void> {
         };
         store.put(prodAdmin);
       });
+    } else {
+      // Sincroniza fotos atualizadas dos produtos padrão/demonstrativos caso o usuário já tenha aberto a aplicação
+      const tx = db.transaction('products', 'readwrite');
+      const store = tx.objectStore('products');
+      const req = store.getAll();
+      req.onsuccess = () => {
+        const list: ProductAdmin[] = req.result || [];
+        list.forEach((existing) => {
+          const fresh = productsData.find((p) => p.id === existing.id);
+          if (fresh && fresh.imagem !== existing.imagem && (existing.imagem.includes('/assets/produtos/') || !existing.imagem.startsWith('data:'))) {
+            existing.imagem = fresh.imagem;
+            store.put(existing);
+          }
+        });
+      };
     }
 
     // 4. Configurações da Loja

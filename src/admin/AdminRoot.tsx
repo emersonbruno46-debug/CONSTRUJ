@@ -35,7 +35,10 @@ export const AdminRoot: React.FC = () => {
     setCheckingAuth(false);
 
     // Sincroniza com hash ou path se houver
-    const path = window.location.pathname.replace('/admin', '').replace('/', '');
+    let path = window.location.pathname.replace('/admin', '').replace('/', '');
+    if (!path && window.location.hash.includes('admin/')) {
+      path = window.location.hash.split('admin/')[1]?.split('?')[0]?.replace('/', '');
+    }
     if (path && ['inicio', 'produtos', 'categorias', 'aparencia', 'loja', 'equipe'].includes(path)) {
       setActiveTab(path);
     }
@@ -44,7 +47,12 @@ export const AdminRoot: React.FC = () => {
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
     setIsSidebarOpen(false);
-    window.history.pushState({}, '', `/admin/${tab === 'inicio' ? '' : tab}`);
+    const suffix = tab === 'inicio' ? '' : `/${tab}`;
+    if (window.location.hash.includes('admin')) {
+      window.location.hash = `#/admin${suffix}`;
+    } else {
+      window.history.pushState({}, '', `/admin${suffix}`);
+    }
   };
 
   const handleLogout = () => {

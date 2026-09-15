@@ -68,6 +68,7 @@ export const ConstruJCategoryFilters: React.FC<ConstruJCategoryFiltersProps> = (
         aria-label="Filtrar produtos por categoria"
       >
         {/* Opção Todos */}
+        {/* Opção Todos */}
         <button
           ref={selectedCategory === 'all' ? activeBtnRef : null}
           type="button"
@@ -83,16 +84,17 @@ export const ConstruJCategoryFilters: React.FC<ConstruJCategoryFiltersProps> = (
                 className="chip-pill-background"
                 layoutId="active-category-pill"
                 transition={{
-                  duration: 0.24,
+                  duration: 0.22,
                   ease: [0.22, 1, 0.36, 1]
                 }}
                 aria-hidden="true"
               />
             )
           )}
-          <span className="chip-pill-border" aria-hidden="true" />
-          {getCategoryIcon('all')}
-          <span style={{ position: 'relative', zIndex: 1 }}>Todos</span>
+          <span className="chip-content">
+            {getCategoryIcon('all')}
+            <span>Todos</span>
+          </span>
         </button>
 
         {/* Categorias Oficiais */}
@@ -116,16 +118,17 @@ export const ConstruJCategoryFilters: React.FC<ConstruJCategoryFiltersProps> = (
                     className="chip-pill-background"
                     layoutId="active-category-pill"
                     transition={{
-                      duration: 0.24,
+                      duration: 0.22,
                       ease: [0.22, 1, 0.36, 1]
                     }}
                     aria-hidden="true"
                   />
                 )
               )}
-              <span className="chip-pill-border" aria-hidden="true" />
-              {getCategoryIcon(cat.id)}
-              <span style={{ position: 'relative', zIndex: 1 }}>{cat.nome}</span>
+              <span className="chip-content">
+                {getCategoryIcon(cat.id)}
+                <span>{cat.nome}</span>
+              </span>
             </button>
           );
         })}

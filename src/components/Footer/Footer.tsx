@@ -43,8 +43,18 @@ export const Footer: React.FC = () => {
             <a href="#inicio">Início</a>
             <a href="#catalogo">Catálogo</a>
             <a href="#loja">Nossa loja</a>
-            <a href="#contato">Contato</a>
-            <a href="/admin" style={{ opacity: 0.85, fontWeight: 700 }}>Acesso ao Painel</a>
+            <a
+              href="/admin"
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState({}, '', '/admin');
+                window.dispatchEvent(new PopStateEvent('popstate'));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              style={{ opacity: 0.85, fontWeight: 700 }}
+            >
+              Acesso ao Painel
+            </a>
           </nav>
 
           <p>Rio Pardo de Minas – MG</p>

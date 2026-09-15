@@ -22,10 +22,18 @@ import {
 import { StoreSettingsAdmin } from './types/admin';
 
 export const App: React.FC = () => {
-  // Controle de rota pública vs painel administrativo
-  const [isAdminRoute, setIsAdminRoute] = useState(() => {
-    return window.location.pathname.startsWith('/admin');
-  });
+  // Controle de rota pública vs painel administrativo (suporta tanto path direto /admin quanto hash #/admin)
+  const isCurrentlyAdmin = () => {
+    return (
+      window.location.pathname.startsWith('/admin') ||
+      window.location.pathname.includes('/admin') ||
+      window.location.hash.startsWith('#/admin') ||
+      window.location.hash.startsWith('#admin') ||
+      window.location.hash.includes('admin')
+    );
+  };
+
+  const [isAdminRoute, setIsAdminRoute] = useState(isCurrentlyAdmin);
 
   // Dados reativos carregados da base persistente
   const [liveProducts, setLiveProducts] = useState<Product[]>([]);
@@ -52,14 +60,18 @@ export const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('inicio');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Monitora alterações de URL (botões de voltar/avançar e links)
+  // Monitora alterações de URL (botões de voltar/avançar, hashchange e links)
   useEffect(() => {
     const checkRoute = () => {
-      setIsAdminRoute(window.location.pathname.startsWith('/admin'));
+      setIsAdminRoute(isCurrentlyAdmin());
     };
 
     window.addEventListener('popstate', checkRoute);
-    return () => window.removeEventListener('popstate', checkRoute);
+    window.addEventListener('hashchange', checkRoute);
+    return () => {
+      window.removeEventListener('popstate', checkRoute);
+      window.removeEventListener('hashchange', checkRoute);
+    };
   }, []);
 
   // Carrega e sincroniza dados do banco de dados persistente

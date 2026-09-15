@@ -13,7 +13,7 @@ export const productsData: Product[] = [
     permiteDecimal: true,
     quantidadeMinima: 1,
     incremento: 0.5,
-    imagem: '/assets/produtos/porcelanato.webp',
+    imagem: '/assets/produtos/porcelanato.jpg',
     alt: 'Pilha de placas de porcelanato polido 60x60cm tom neutro',
     marca: 'Referência ilustrativa',
     variantes: [
@@ -41,7 +41,7 @@ export const productsData: Product[] = [
     permiteDecimal: true,
     quantidadeMinima: 1,
     incremento: 0.5,
-    imagem: '/assets/produtos/piso-ceramico.webp',
+    imagem: '/assets/produtos/piso-ceramico.jpg',
     alt: 'Piso cerâmico rústico antiderrapante para áreas externas',
     marca: 'Referência ilustrativa',
     variantes: [
@@ -67,7 +67,7 @@ export const productsData: Product[] = [
     permiteDecimal: false,
     quantidadeMinima: 1,
     incremento: 1,
-    imagem: '/assets/produtos/rodape.webp',
+    imagem: '/assets/produtos/rodape.jpg',
     alt: 'Barra de rodapé branco em poliestireno para acabamento',
     marca: 'Referência ilustrativa',
     variantes: [
@@ -125,7 +125,7 @@ export const productsData: Product[] = [
     permiteDecimal: false,
     quantidadeMinima: 1,
     incremento: 1,
-    imagem: '/assets/produtos/esmalte-sintetico.webp',
+    imagem: '/assets/produtos/esmalte-sintetico.jpg',
     alt: 'Galão de esmalte sintético brilhante 3,6 litros',
     marca: 'Referência ilustrativa',
     variantes: [
@@ -152,7 +152,7 @@ export const productsData: Product[] = [
     permiteDecimal: false,
     quantidadeMinima: 1,
     incremento: 1,
-    imagem: '/assets/produtos/rolo-pintura.webp',
+    imagem: '/assets/produtos/rolo-pintura.jpg',
     alt: 'Rolo de pintura profissional de 23cm com cabo anatômico',
     marca: 'Referência ilustrativa',
     especificacoes: [
@@ -202,7 +202,7 @@ export const productsData: Product[] = [
     permiteDecimal: false,
     quantidadeMinima: 1,
     incremento: 1,
-    imagem: '/assets/produtos/trena.webp',
+    imagem: '/assets/produtos/trena.jpg',
     alt: 'Trena de medição de 5 metros com corpo emborrachado',
     marca: 'Referência ilustrativa',
     especificacoes: [
@@ -224,7 +224,7 @@ export const productsData: Product[] = [
     permiteDecimal: false,
     quantidadeMinima: 1,
     incremento: 1,
-    imagem: '/assets/produtos/chaves.webp',
+    imagem: '/assets/produtos/chaves.jpg',
     alt: 'Jogo de chaves combinadas em estojo organizador',
     marca: 'Referência ilustrativa',
     variantes: [
@@ -277,7 +277,7 @@ export const productsData: Product[] = [
     permiteDecimal: false,
     quantidadeMinima: 1,
     incremento: 1,
-    imagem: '/assets/produtos/tubo-pvc.webp',
+    imagem: '/assets/produtos/tubo-pvc.jpg',
     alt: 'Barras e conexões de tubos de PVC marrom e conexões hidráulicas',
     marca: 'Referência ilustrativa',
     especificacoes: [
@@ -355,7 +355,7 @@ export const productsData: Product[] = [
     permiteDecimal: false,
     quantidadeMinima: 1,
     incremento: 1,
-    imagem: '/assets/produtos/tomada.webp',
+    imagem: '/assets/produtos/tomada.jpg',
     alt: 'Placa de tomada elétrica padrão brasileira branca 10A',
     marca: 'Referência ilustrativa',
     especificacoes: [
@@ -377,7 +377,7 @@ export const productsData: Product[] = [
     permiteDecimal: false,
     quantidadeMinima: 1,
     incremento: 1,
-    imagem: '/assets/produtos/lampada-led.webp',
+    imagem: '/assets/produtos/lampada-led.jpg',
     alt: 'Lâmpada LED bulbo branca com base de rosca E27',
     marca: 'Referência ilustrativa',
     variantes: [
@@ -407,7 +407,7 @@ export const productsData: Product[] = [
     permiteDecimal: false,
     quantidadeMinima: 1,
     incremento: 1,
-    imagem: '/assets/produtos/cimento.webp',
+    imagem: '/assets/produtos/cimento.jpg',
     alt: 'Saco de cimento Portland CP II 50kg para construção',
     marca: 'Referência ilustrativa',
     especificacoes: [
@@ -429,7 +429,7 @@ export const productsData: Product[] = [
     permiteDecimal: false,
     quantidadeMinima: 1,
     incremento: 1,
-    imagem: '/assets/produtos/argamassa.webp',
+    imagem: '/assets/produtos/argamassa.jpg',
     alt: 'Saco de argamassa colante AC-III 20kg para porcelanatos',
     marca: 'Referência ilustrativa',
     variantes: [
@@ -455,7 +455,7 @@ export const productsData: Product[] = [
     permiteDecimal: true,
     quantidadeMinima: 0.5,
     incremento: 0.5,
-    imagem: '/assets/produtos/tijolo.webp',
+    imagem: '/assets/produtos/tijolo.jpg',
     alt: 'Tijolo cerâmico avermelhado com 8 furos para alvenaria de vedação',
     marca: 'Referência ilustrativa',
     variantes: [

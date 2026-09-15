@@ -132,24 +132,48 @@
 .chip-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
   padding: 8px 18px;
   border-radius: var(--radius-full);
   font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-text-main);
-  background: transparent;
-  border: none;
+  background-color: var(--color-bg-surface);
+  border: 1.5px solid var(--color-border);
   cursor: pointer;
   user-select: none;
   position: relative;
   flex-shrink: 0;
-  transition: color var(--motion-micro);
+  transition: all 0.2s ease;
+  isolation: isolate;
+}
+
+.chip-btn:hover:not(.active) {
+  border-color: var(--color-primary-green);
+  background-color: #f2f8f3;
+  color: var(--color-primary-green);
 }
 
 .chip-btn.active {
-  color: #ffffff;
+  background-color: var(--color-primary-green) !important;
+  border-color: var(--color-primary-green) !important;
+  color: #ffffff !important;
   font-weight: 700;
+  box-shadow: 0 4px 14px rgba(22, 117, 42, 0.32);
+}
+
+.chip-content {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+}
+
+.chip-btn.active .chip-content,
+.chip-btn.active .chip-content * {
+  color: #ffffff !important;
 }
 
 .chip-pill-background {
@@ -157,25 +181,8 @@
   inset: 0;
   background-color: var(--color-primary-green);
   border-radius: var(--radius-full);
-  z-index: -1;
-  box-shadow: 0 4px 12px rgba(22, 117, 42, 0.25);
-}
-
-.chip-pill-border {
-  position: absolute;
-  inset: 0;
-  border: 1.5px solid var(--color-border);
-  background-color: var(--color-bg-surface);
-  border-radius: var(--radius-full);
-  z-index: -2;
-  transition: border-color var(--motion-micro);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .chip-btn:hover:not(.active) .chip-pill-border {
-    border-color: var(--color-primary-green);
-    background-color: #f7faf7;
-  }
+  z-index: 1;
+  box-shadow: 0 4px 14px rgba(22, 117, 42, 0.32);
 }
 
 /* Indicador de rolagem lateral no mobile */
