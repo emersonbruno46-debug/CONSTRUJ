@@ -89,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({
               aria-label={`Meu orçamento com ${quoteCount} ${quoteCount === 1 ? 'item' : 'itens'}`}
             >
               <FileText size={18} aria-hidden="true" />
-              <span>Meu orçamento</span>
+              <span className="btn-quote-text">Meu orçamento</span>
               <ConstruJQuoteCount count={quoteCount} />
             </button>
 

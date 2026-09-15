@@ -198,8 +198,8 @@ export const Hero: React.FC<HeroProps> = ({
           <div className="hero-media-column">
             <motion.div
               className="hero-media-composition"
-              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.85, delay: 0.22, ease: [0.16, 1, 0.3, 1] as const }}
             >
               {/* Elementos Decorativos Orgânicos Integrados */}

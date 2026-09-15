@@ -182,6 +182,48 @@
   color: var(--color-text-main);
   background-color: var(--color-bg-subtle);
   border: none;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .header-container {
+    gap: 8px;
+  }
+
+  .brand-logo-img {
+    height: 38px;
+    max-width: 155px;
+  }
+
+  .header-actions {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .btn-quote-header {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .btn-quote-header .btn-quote-text {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand-logo-img {
+    height: 34px;
+    max-width: 130px;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
 }
 
 @media (min-width: 900px) {

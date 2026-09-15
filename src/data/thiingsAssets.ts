@@ -12,7 +12,7 @@ export const thiingsAssets: Record<string, ThiingAsset> = {
   'mosaic-tile': {
     id: 'mosaic-tile',
     name: 'Mosaic Tile',
-    localFile: '/assets/thiings/mosaic-tile.png',
+    localFile: '/assets/thiings/mosaic-tile.webp',
     sourceUrl: 'https://www.thiings.co/things/mosaic-tile',
     alt: '',
     opticalScale: 1.04,
@@ -21,7 +21,7 @@ export const thiingsAssets: Record<string, ThiingAsset> = {
   'painting-bucket': {
     id: 'painting-bucket',
     name: 'Painting Bucket',
-    localFile: '/assets/thiings/painting-bucket.png',
+    localFile: '/assets/thiings/painting-bucket.webp',
     sourceUrl: 'https://www.thiings.co/things/painting-bucket',
     alt: '',
     opticalScale: 0.98,
@@ -30,7 +30,7 @@ export const thiingsAssets: Record<string, ThiingAsset> = {
   'power-drill': {
     id: 'power-drill',
     name: 'Power Drill',
-    localFile: '/assets/thiings/power-drill.png',
+    localFile: '/assets/thiings/power-drill.webp',
     sourceUrl: 'https://www.thiings.co/things/power-drill',
     alt: '',
     opticalScale: 1.0,
@@ -39,7 +39,7 @@ export const thiingsAssets: Record<string, ThiingAsset> = {
   'faucet': {
     id: 'faucet',
     name: 'Faucet',
-    localFile: '/assets/thiings/faucet.png',
+    localFile: '/assets/thiings/faucet.webp',
     sourceUrl: 'https://www.thiings.co/things/faucet',
     alt: '',
     opticalScale: 1.02,
@@ -48,7 +48,7 @@ export const thiingsAssets: Record<string, ThiingAsset> = {
   'led-bulb': {
     id: 'led-bulb',
     name: 'LED Bulb',
-    localFile: '/assets/thiings/led-bulb.png',
+    localFile: '/assets/thiings/led-bulb.webp',
     sourceUrl: 'https://www.thiings.co/things/led-bulb',
     alt: '',
     opticalScale: 1.12, // Lâmpada mais estreita recebe boost óptico para igualar peso visual
@@ -57,7 +57,7 @@ export const thiingsAssets: Record<string, ThiingAsset> = {
   'brick': {
     id: 'brick',
     name: 'Brick',
-    localFile: '/assets/thiings/brick.png',
+    localFile: '/assets/thiings/brick.webp',
     sourceUrl: 'https://www.thiings.co/things/brick',
     alt: '',
     opticalScale: 0.96, // Bloco sólido compensado levemente
@@ -66,7 +66,7 @@ export const thiingsAssets: Record<string, ThiingAsset> = {
   'location-pin': {
     id: 'location-pin',
     name: 'Location Pin',
-    localFile: '/assets/thiings/location-pin.png',
+    localFile: '/assets/thiings/location-pin.webp',
     sourceUrl: 'https://www.thiings.co/things/location-pin',
     alt: '',
     opticalScale: 1.0,
@@ -75,7 +75,7 @@ export const thiingsAssets: Record<string, ThiingAsset> = {
   'smartphone': {
     id: 'smartphone',
     name: 'Smartphone',
-    localFile: '/assets/thiings/smartphone.png',
+    localFile: '/assets/thiings/smartphone.webp',
     sourceUrl: 'https://www.thiings.co/things/smartphone',
     alt: '',
     opticalScale: 1.05,
@@ -84,7 +84,7 @@ export const thiingsAssets: Record<string, ThiingAsset> = {
   'wall-clock': {
     id: 'wall-clock',
     name: 'Wall Clock',
-    localFile: '/assets/thiings/wall-clock.png',
+    localFile: '/assets/thiings/wall-clock.webp',
     sourceUrl: 'https://www.thiings.co/things/wall-clock',
     alt: '',
     opticalScale: 1.0,
@@ -93,7 +93,7 @@ export const thiingsAssets: Record<string, ThiingAsset> = {
   'clipboard': {
     id: 'clipboard',
     name: 'Clipboard',
-    localFile: '/assets/thiings/clipboard.png',
+    localFile: '/assets/thiings/clipboard.webp',
     sourceUrl: 'https://www.thiings.co/things/clipboard',
     alt: '',
     opticalScale: 1.02,
@@ -102,7 +102,7 @@ export const thiingsAssets: Record<string, ThiingAsset> = {
   'hard-hat': {
     id: 'hard-hat',
     name: 'Hard Hat',
-    localFile: '/assets/thiings/hard-hat.png',
+    localFile: '/assets/thiings/hard-hat.webp',
     sourceUrl: 'https://www.thiings.co/things/hard-hat',
     alt: '',
     opticalScale: 1.04,
