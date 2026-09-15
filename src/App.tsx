@@ -13,7 +13,6 @@ import { CustomCursor } from './components/UI/CustomCursor';
 import { useQuote } from './hooks/useQuote';
 import { ProductCategory, Product, ProductVariant, CategoryInfo } from './types/catalog';
 import { companyData } from './data/company';
-import { AdminRoot } from './admin/AdminRoot';
 import {
   getProducts,
   getCategories,
@@ -21,6 +20,11 @@ import {
   subscribeToDataChanges
 } from './services/db';
 import { StoreSettingsAdmin } from './types/admin';
+
+// Carregamento dinâmico sob demanda (code splitting) para não sobrecarregar visitantes do site público
+const AdminRoot = React.lazy(() =>
+  import('./admin/AdminRoot').then((module) => ({ default: module.AdminRoot }))
+);
 
 export const App: React.FC = () => {
   // Controle de rota pública vs painel administrativo (suporta tanto path direto /admin quanto hash #/admin)
@@ -171,9 +175,31 @@ export const App: React.FC = () => {
     window.open(link, '_blank', 'noopener,noreferrer');
   };
 
-  // Se a rota for o painel administrativo, renderiza o AdminRoot completo
+  // Se a rota for o painel administrativo, renderiza o AdminRoot completo sob demanda
   if (isAdminRoute) {
-    return <AdminRoot />;
+    return (
+      <React.Suspense
+        fallback={
+          <div
+            style={{
+              display: 'flex',
+              height: '100vh',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: '#0a3215',
+              color: '#ffffff',
+              fontSize: '18px',
+              fontWeight: 600,
+              gap: '12px'
+            }}
+          >
+            Carregando painel administrativo...
+          </div>
+        }
+      >
+        <AdminRoot />
+      </React.Suspense>
+    );
   }
 
   // Verifica se o aviso temporário está ativo e no período válido

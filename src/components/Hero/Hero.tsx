@@ -228,6 +228,7 @@ export const Hero: React.FC<HeroProps> = ({
                   height="680"
                   loading="eager"
                   fetchPriority="high"
+                  decoding="async"
                 />
               </div>
 

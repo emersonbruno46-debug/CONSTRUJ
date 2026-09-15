@@ -63,6 +63,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           src={product.imagem}
           alt={product.alt || product.nome}
           loading="lazy"
+          decoding="async"
           width="260"
           height="260"
           onError={(e) => {

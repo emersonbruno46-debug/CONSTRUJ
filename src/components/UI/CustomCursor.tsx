@@ -44,12 +44,21 @@ export const CustomCursor: React.FC = () => {
     const handleMouseLeave = () => setIsVisible(false);
     const handleMouseEnter = () => setIsVisible(true);
 
-    // Loop de animação suave para o rastro com brilho (efeito lerp elástico)
+    let isRunning = false;
+
+    // Loop de animação sob demanda para o rastro (executa apenas enquanto em movimento)
     const animateTrail = () => {
-      // Interpolação de 20% em direção ao mouse para rastro suave e orgânico
-      const factor = 0.22;
-      trailPos.current.x += (mousePos.current.x - trailPos.current.x) * factor;
-      trailPos.current.y += (mousePos.current.y - trailPos.current.y) * factor;
+      const dx = mousePos.current.x - trailPos.current.x;
+      const dy = mousePos.current.y - trailPos.current.y;
+
+      // Se a distância for insignificante, suspende o loop para economizar ciclos de CPU/GPU
+      if (Math.abs(dx) < 0.15 && Math.abs(dy) < 0.15) {
+        isRunning = false;
+        return;
+      }
+
+      trailPos.current.x += dx * 0.22;
+      trailPos.current.y += dy * 0.22;
 
       if (trailRef.current) {
         trailRef.current.style.transform = `translate3d(${trailPos.current.x}px, ${trailPos.current.y}px, 0)`;
@@ -58,16 +67,26 @@ export const CustomCursor: React.FC = () => {
       requestRef.current = requestAnimationFrame(animateTrail);
     };
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    const startAnimation = () => {
+      if (!isRunning) {
+        isRunning = true;
+        requestRef.current = requestAnimationFrame(animateTrail);
+      }
+    };
+
+    const onMove = (e: MouseEvent) => {
+      handleMouseMove(e);
+      startAnimation();
+    };
+
+    window.addEventListener('mousemove', onMove, { passive: true });
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mouseenter', handleMouseEnter);
 
-    requestRef.current = requestAnimationFrame(animateTrail);
-
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mouseleave', handleMouseLeave);
