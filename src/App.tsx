@@ -9,6 +9,7 @@ import { Footer } from './components/Footer/Footer';
 import { QuoteDrawer } from './components/QuoteDrawer/QuoteDrawer';
 import { ConstruJFloatingBar } from './components/QuoteDrawer/ConstruJFloatingBar';
 import { Toast } from './components/UI/Toast';
+import { CustomCursor } from './components/UI/CustomCursor';
 import { useQuote } from './hooks/useQuote';
 import { ProductCategory, Product, ProductVariant, CategoryInfo } from './types/catalog';
 import { companyData } from './data/company';
@@ -187,6 +188,9 @@ export const App: React.FC = () => {
 
   return (
     <>
+      {/* Cursor Personalizado Moderno com Ponto, Glow e Rastro */}
+      <CustomCursor />
+
       {/* Link para pular direto para o conteúdo via teclado */}
       <a href="#catalogo" className="skip-link">
         Pular para o catálogo de materiais

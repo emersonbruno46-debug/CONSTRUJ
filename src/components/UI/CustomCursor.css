@@ -1,0 +1,106 @@
+/* ==========================================================================
+   CURSOR PERSONALIZADO — BOLINHA PEQUENA COM GLOW E RASTRO
+   ========================================================================== */
+
+.custom-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.custom-cursor-container.visible {
+  opacity: 1;
+}
+
+/* Ponto central pequeno com brilho glow */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  margin-left: -4px;
+  background-color: var(--color-primary-green, #16752a);
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(22, 117, 42, 0.8),
+              0 0 18px rgba(34, 197, 94, 0.5);
+  transition: transform 0.05s ease-out,
+              width 0.2s cubic-bezier(0.2, 1, 0.3, 1),
+              height 0.2s cubic-bezier(0.2, 1, 0.3, 1),
+              background-color 0.2s ease,
+              box-shadow 0.2s ease;
+  will-change: transform;
+}
+
+/* Rastro suave que segue o mouse com leve delay (glow aura) */
+.cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  margin-top: -14px;
+  margin-left: -14px;
+  border: 1.5px solid rgba(22, 117, 42, 0.45);
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.18) 0%, rgba(22, 117, 42, 0.05) 70%, transparent 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(22, 117, 42, 0.25);
+  transition: width 0.25s cubic-bezier(0.2, 1, 0.3, 1),
+              height 0.25s cubic-bezier(0.2, 1, 0.3, 1),
+              margin 0.25s cubic-bezier(0.2, 1, 0.3, 1),
+              border-color 0.25s ease,
+              background-color 0.25s ease,
+              box-shadow 0.25s ease;
+  will-change: transform;
+}
+
+/* Estado de Hover sobre elementos interativos (botões, cards, links) */
+.custom-cursor-container.hovering .cursor-dot {
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  margin-left: -5px;
+  background-color: var(--color-primary-green-dark, #0e4f1c);
+  box-shadow: 0 0 14px rgba(22, 117, 42, 0.9),
+              0 0 24px rgba(34, 197, 94, 0.6);
+}
+
+.custom-cursor-container.hovering .cursor-trail {
+  width: 44px;
+  height: 44px;
+  margin-top: -22px;
+  margin-left: -22px;
+  border-color: rgba(22, 117, 42, 0.7);
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.25) 0%, rgba(22, 117, 42, 0.08) 75%, transparent 100%);
+  box-shadow: 0 0 18px rgba(22, 117, 42, 0.35);
+}
+
+/* Estado de Clique */
+.custom-cursor-container.clicking .cursor-dot {
+  transform: scale(0.7) !important;
+}
+
+.custom-cursor-container.clicking .cursor-trail {
+  width: 22px;
+  height: 22px;
+  margin-top: -11px;
+  margin-left: -11px;
+  border-color: var(--color-primary-green);
+  background-color: rgba(22, 117, 42, 0.3);
+}
+
+/* Dispositivos móveis e telas touchscreen: oculta o cursor customizado para não atrapalhar o toque */
+@media (pointer: coarse) {
+  .custom-cursor-container {
+    display: none !important;
+  }
+}
