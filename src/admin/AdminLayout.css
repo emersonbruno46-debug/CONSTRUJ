@@ -1,0 +1,254 @@
+/* ==========================================================
+   PAINEL ADMINISTRATIVO CONSTRU-J — ESTILOS DO LAYOUT
+   Cores: Verde (#149B35), Verde Escuro (#083D1C), Laranja (#FF7100)
+   ========================================================== */
+
+.admin-app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f6f8f5;
+  color: #1a271d;
+  font-family: var(--font-family, system-ui, sans-serif);
+}
+
+/* Header Superior do Admin */
+.admin-top-navbar {
+  height: 64px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e3e8e1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.admin-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  color: #374151;
+  background: transparent;
+  border: 1px solid #e5e7eb;
+}
+
+@media (min-width: 1024px) {
+  .admin-menu-toggle {
+    display: none;
+  }
+}
+
+.admin-brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.admin-brand-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  background-color: #e8f5e9;
+  color: #149b35;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.admin-btn-view-site {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  background-color: #f0fdf4;
+  color: #16752a;
+  border: 1px solid #bbf7d0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.admin-btn-view-site:hover {
+  background-color: #dcfce7;
+}
+
+.admin-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 9999px;
+}
+
+.admin-user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #149b35;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-user-info {
+  display: none;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .admin-user-info {
+    display: flex;
+  }
+}
+
+.admin-user-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+.admin-user-role {
+  font-size: 0.68rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.admin-btn-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  color: #ef4444;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  transition: all 0.2s ease;
+}
+
+.admin-btn-logout:hover {
+  background: #fee2e2;
+}
+
+/* Corpo Principal (Sidebar + Conteúdo) */
+.admin-main-wrapper {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+/* Sidebar Desktop */
+.admin-sidebar {
+  width: 260px;
+  background-color: #ffffff;
+  border-right: 1px solid #e3e8e1;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 24px 16px;
+  gap: 8px;
+}
+
+@media (max-width: 1023px) {
+  .admin-sidebar {
+    position: fixed;
+    top: 64px;
+    bottom: 0;
+    left: -280px;
+    z-index: 50;
+    transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .admin-sidebar.open {
+    left: 0;
+  }
+}
+
+.admin-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  top: 64px;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 45;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: #4b5563;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.admin-nav-item:hover {
+  background-color: #f0fdf4;
+  color: #149b35;
+}
+
+.admin-nav-item.active {
+  background-color: #149b35;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(20, 155, 53, 0.25);
+}
+
+.admin-nav-badge {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+/* Área de Conteúdo */
+.admin-content-area {
+  flex: 1;
+  padding: 24px 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .admin-content-area {
+    padding: 32px 28px;
+  }
+}

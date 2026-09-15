@@ -61,7 +61,7 @@
 .search-input-wrapper {
   position: relative;
   width: 100%;
-  max-width: 640px;
+  max-width: 780px;
 }
 
 .search-icon {
@@ -236,7 +236,8 @@
 
 @media (min-width: 1200px) {
   .products-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
   }
 }
 

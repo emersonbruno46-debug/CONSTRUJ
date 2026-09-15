@@ -10,10 +10,29 @@ import { QuoteDrawer } from './components/QuoteDrawer/QuoteDrawer';
 import { ConstruJFloatingBar } from './components/QuoteDrawer/ConstruJFloatingBar';
 import { Toast } from './components/UI/Toast';
 import { useQuote } from './hooks/useQuote';
-import { ProductCategory, Product, ProductVariant } from './types/catalog';
+import { ProductCategory, Product, ProductVariant, CategoryInfo } from './types/catalog';
 import { companyData } from './data/company';
+import { AdminRoot } from './admin/AdminRoot';
+import {
+  getProducts,
+  getCategories,
+  getStoreSettings,
+  subscribeToDataChanges
+} from './services/db';
+import { StoreSettingsAdmin } from './types/admin';
 
 export const App: React.FC = () => {
+  // Controle de rota pública vs painel administrativo
+  const [isAdminRoute, setIsAdminRoute] = useState(() => {
+    return window.location.pathname.startsWith('/admin');
+  });
+
+  // Dados reativos carregados da base persistente
+  const [liveProducts, setLiveProducts] = useState<Product[]>([]);
+  const [liveCategories, setLiveCategories] = useState<CategoryInfo[]>([]);
+  const [storeSettings, setStoreSettings] = useState<StoreSettingsAdmin | null>(null);
+
+  // Orçamento
   const {
     items,
     observacoes,
@@ -32,6 +51,43 @@ export const App: React.FC = () => {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState('inicio');
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Monitora alterações de URL (botões de voltar/avançar e links)
+  useEffect(() => {
+    const checkRoute = () => {
+      setIsAdminRoute(window.location.pathname.startsWith('/admin'));
+    };
+
+    window.addEventListener('popstate', checkRoute);
+    return () => window.removeEventListener('popstate', checkRoute);
+  }, []);
+
+  // Carrega e sincroniza dados do banco de dados persistente
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const [prods, cats, settings] = await Promise.all([
+          getProducts(false), // somente publicados para o visitante público
+          getCategories(false), // somente ativas
+          getStoreSettings()
+        ]);
+        setLiveProducts(prods as unknown as Product[]);
+        setLiveCategories(cats as unknown as CategoryInfo[]);
+        setStoreSettings(settings);
+      } catch (err) {
+        console.error('Erro ao carregar dados do banco:', err);
+      }
+    };
+
+    loadData();
+
+    // Inscreve para atualizar imediatamente quando houver alterações no admin
+    const unsubscribe = subscribeToDataChanges(() => {
+      loadData();
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   // Monitora modais abertos no DOM para ocultar a barra flutuante
   useEffect(() => {
@@ -98,8 +154,24 @@ export const App: React.FC = () => {
   };
 
   const handleOpenQuoteWhatsApp = () => {
-    window.open(companyData.whatsapp.link, '_blank', 'noopener,noreferrer');
+    const link = storeSettings?.whatsapp?.link || companyData.whatsapp.link;
+    window.open(link, '_blank', 'noopener,noreferrer');
   };
+
+  // Se a rota for o painel administrativo, renderiza o AdminRoot completo
+  if (isAdminRoute) {
+    return <AdminRoot />;
+  }
+
+  // Verifica se o aviso temporário está ativo e no período válido
+  const banner = storeSettings?.announcementBanner;
+  let showAnnouncement = false;
+  if (banner && banner.ativo && banner.texto?.trim()) {
+    const now = new Date().getTime();
+    const startOk = !banner.inicio || new Date(banner.inicio).getTime() <= now;
+    const endOk = !banner.termino || new Date(banner.termino).getTime() >= now;
+    showAnnouncement = startOk && endOk;
+  }
 
   return (
     <>
@@ -107,6 +179,42 @@ export const App: React.FC = () => {
       <a href="#catalogo" className="skip-link">
         Pular para o catálogo de materiais
       </a>
+
+      {/* Faixa de Aviso Temporário (se ativa) */}
+      {showAnnouncement && banner && (
+        <div
+          role="status"
+          aria-live="polite"
+          style={{
+            backgroundColor: '#ff7100',
+            color: '#ffffff',
+            padding: '8px 16px',
+            textAlign: 'center',
+            fontSize: '0.86rem',
+            fontWeight: 700,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            zIndex: 100
+          }}
+        >
+          <span>{banner.texto}</span>
+          {banner.link && (
+            <a
+              href={banner.link}
+              style={{
+                textDecoration: 'underline',
+                color: '#ffffff',
+                fontWeight: 800,
+                marginLeft: '6px'
+              }}
+            >
+              {banner.linkTexto || 'Saiba mais →'}
+            </a>
+          )}
+        </div>
+      )}
 
       {/* Cabeçalho */}
       <Header
@@ -116,20 +224,25 @@ export const App: React.FC = () => {
       />
 
       <main>
-        {/* Abertura / Hero */}
+        {/* Abertura / Hero com layout amplo e espaçado */}
         <Hero
           onExploreCatalog={handleExploreCatalog}
           onOpenQuoteWhatsApp={handleOpenQuoteWhatsApp}
+          onSelectCategory={handleSelectCategoryFromHero}
         />
 
-        {/* 6 Categorias Oficiais */}
-        <Categories onSelectCategory={handleSelectCategoryFromHero} />
+        {/* 6 Categorias com grid responsivo ampliado */}
+        <Categories
+          onSelectCategory={handleSelectCategoryFromHero}
+          categories={liveCategories.length > 0 ? liveCategories : undefined}
+        />
 
-        {/* Catálogo Interativo com Busca e Filtros */}
+        {/* Catálogo Interativo conectado à base persistente */}
         <Catalog
           onAddToQuote={handleAddToQuote}
           selectedCategory={selectedCategory}
           onSelectCategory={setSelectedCategory}
+          products={liveProducts.length > 0 ? liveProducts : undefined}
         />
 
         {/* Nossa Loja e Galeria Real */}
@@ -139,7 +252,7 @@ export const App: React.FC = () => {
         <ContactSection onOpenQuote={() => setIsQuoteOpen(true)} />
       </main>
 
-      {/* Rodapé Institucional */}
+      {/* Rodapé Institucional com Link de Acesso ao Painel */}
       <Footer />
 
       {/* Barra Flutuante Mobile de Meu Orçamento */}

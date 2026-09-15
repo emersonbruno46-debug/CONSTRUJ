@@ -15,12 +15,14 @@ interface CatalogProps {
   onAddToQuote: (product: Product, variant?: ProductVariant, quantity?: number) => void;
   selectedCategory: ProductCategory | 'all';
   onSelectCategory: (cat: ProductCategory | 'all') => void;
+  products?: Product[];
 }
 
 export const Catalog: React.FC<CatalogProps> = ({
   onAddToQuote,
   selectedCategory,
-  onSelectCategory
+  onSelectCategory,
+  products
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProductForModal, setSelectedProductForModal] = useState<Product | null>(null);
@@ -28,7 +30,8 @@ export const Catalog: React.FC<CatalogProps> = ({
 
   // Filtragem combinada por busca e categoria
   const filteredProducts = useMemo(() => {
-    return productsData.filter((prod) => {
+    const list = products && products.length > 0 ? products : productsData;
+    return list.filter((prod) => {
       if (!prod.ativo) return false;
 
       // Filtro de categoria

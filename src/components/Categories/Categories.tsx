@@ -9,17 +9,19 @@ import {
 } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { categoriesData } from '../../data/categories';
-import { ProductCategory } from '../../types/catalog';
+import { ProductCategory, CategoryInfo } from '../../types/catalog';
 import { ConstruJReveal } from '../Motion/ConstruJReveal';
 import { ThiingIllustration } from '../UI/ThiingIllustration';
 import './Categories.css';
 
 interface CategoriesProps {
   onSelectCategory: (category: ProductCategory) => void;
+  categories?: CategoryInfo[];
 }
 
-export const Categories: React.FC<CategoriesProps> = ({ onSelectCategory }) => {
+export const Categories: React.FC<CategoriesProps> = ({ onSelectCategory, categories }) => {
   const shouldReduceMotion = useReducedMotion();
+  const listToRender = categories && categories.length > 0 ? categories : categoriesData;
 
   const getCategoryIcon = (id: ProductCategory) => {
     switch (id) {
@@ -57,7 +59,7 @@ export const Categories: React.FC<CategoriesProps> = ({ onSelectCategory }) => {
         </ConstruJReveal>
 
         <div className="categories-grid">
-          {categoriesData.map((cat, index) => {
+          {listToRender.map((cat, index) => {
             const delay = Math.min(index * 0.045, 0.225);
 
             if (shouldReduceMotion) {
