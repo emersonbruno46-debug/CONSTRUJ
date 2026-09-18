@@ -30,6 +30,7 @@ export const AdminRoot: React.FC = () => {
   const [checkingAuth, setCheckingAuth] = useState(true);
 
   useEffect(() => {
+    document.body.classList.add('admin-mode');
     const user = getCurrentUser();
     setCurrentUser(user);
     setCheckingAuth(false);

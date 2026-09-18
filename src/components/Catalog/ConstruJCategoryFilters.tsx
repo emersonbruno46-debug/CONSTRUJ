@@ -50,10 +50,10 @@ export const ConstruJCategoryFilters: React.FC<ConstruJCategoryFiltersProps> = (
       const btnRight = btnLeft + btn.clientWidth;
 
       if (btnLeft < containerLeft || btnRight > containerRight) {
-        btn.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'center'
+        const targetLeft = btnLeft - container.clientWidth / 2 + btn.clientWidth / 2;
+        container.scrollTo({
+          left: Math.max(0, targetLeft),
+          behavior: 'smooth'
         });
       }
     }

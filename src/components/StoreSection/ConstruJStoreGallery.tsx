@@ -64,12 +64,6 @@ export const storePhotos: StorePhoto[] = [
     src: '/assets/fotos/3299db30aec36ebf.jpg',
     title: 'Variedade para Reformar e Construir',
     caption: 'Itens essenciais para todas as fases da construção civil.'
-  },
-  {
-    id: 'visao-geral',
-    src: '/assets/fotos/cf52218795469bc3.jpg',
-    title: 'Visão Geral da Loja',
-    caption: 'Ambiente amplo, iluminado e preparado para atender toda a região de Rio Pardo de Minas.'
   }
 ];
 

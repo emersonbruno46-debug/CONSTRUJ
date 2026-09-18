@@ -5,7 +5,7 @@ import { ConstruJReveal } from '../Motion/ConstruJReveal';
 import { InteractiveHoverButton } from '../UI/interactive-hover-button';
 import { ThiingIllustration } from '../UI/ThiingIllustration';
 import { ConstruJStoreCardsCarousel } from './ConstruJStoreCardsCarousel';
-import { ConstruJStoreGallery } from './ConstruJStoreGallery';
+import { ConstruJStoreGallery, storePhotos } from './ConstruJStoreGallery';
 import './StoreSection.css';
 
 export const StoreSection: React.FC = () => {
@@ -28,7 +28,7 @@ export const StoreSection: React.FC = () => {
     <section id="loja" className="store-section" aria-labelledby="store-heading">
       <div className="container">
         <div className="store-grid">
-          {/* Lado Esquerdo: Carrossel Swiper Cards com as 10 fotos reais */}
+          {/* Lado Esquerdo: Carrossel Swiper Cards com as fotos reais */}
           <div className="store-gallery-wrapper">
             <ConstruJStoreCardsCarousel
               onOpenPhoto={(index) => setActiveGalleryIndex(index)}
@@ -96,10 +96,10 @@ export const StoreSection: React.FC = () => {
                   type="button"
                   className="btn btn-sm btn-outline-subtle"
                   onClick={(e) => handleOpenGallery(0, e)}
-                  aria-label="Ver todas as 10 fotos da loja Constru J"
+                  aria-label={`Ver todas as ${storePhotos.length} fotos da loja Constru J`}
                 >
                   <Eye size={16} aria-hidden="true" />
-                  <span>Ver galeria completa (10 fotos)</span>
+                  <span>Ver galeria completa ({storePhotos.length} fotos)</span>
                 </button>
               </div>
             </ConstruJReveal>
@@ -107,7 +107,7 @@ export const StoreSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Galeria Modal Ampliada com as 10 fotos reais */}
+      {/* Galeria Modal Ampliada com as fotos reais */}
       <ConstruJStoreGallery
         initialIndex={activeGalleryIndex}
         onClose={handleCloseGallery}

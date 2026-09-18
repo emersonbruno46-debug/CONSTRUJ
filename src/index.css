@@ -92,11 +92,62 @@
   padding: 0;
 }
 
-/* Oculta a seta e ponteiro padrão do sistema operacional no desktop */
+/* Oculta a seta e ponteiro padrão apenas no catálogo público (desktop) */
 @media (pointer: fine) {
-  *, *::before, *::after {
+  body:not(.admin-mode) *:not(.admin-app-root):not(.admin-app-root *):not(.admin-login-screen):not(.admin-login-screen *),
+  body:not(.admin-mode) *::before,
+  body:not(.admin-mode) *::after {
     cursor: none !important;
   }
+}
+
+/* Restaura o cursor tradicional do sistema operacional (seta, mão, texto) no painel administrativo */
+.admin-app-root,
+.admin-app-root *,
+.admin-login-screen,
+.admin-login-screen *,
+body.admin-mode,
+body.admin-mode * {
+  cursor: auto !important;
+}
+
+body.admin-mode button,
+body.admin-mode a,
+body.admin-mode [role="button"],
+body.admin-mode select,
+body.admin-mode label,
+body.admin-mode input[type="submit"],
+body.admin-mode input[type="button"],
+body.admin-mode input[type="checkbox"],
+body.admin-mode input[type="radio"],
+.admin-app-root button,
+.admin-app-root a,
+.admin-app-root [role="button"],
+.admin-app-root select,
+.admin-app-root label,
+.admin-login-screen button,
+.admin-login-screen a {
+  cursor: pointer !important;
+}
+
+body.admin-mode input[type="text"],
+body.admin-mode input[type="password"],
+body.admin-mode input[type="email"],
+body.admin-mode input[type="number"],
+body.admin-mode input[type="search"],
+body.admin-mode textarea,
+.admin-app-root input,
+.admin-app-root textarea,
+.admin-login-screen input,
+.admin-login-screen textarea {
+  cursor: text !important;
+}
+
+body.admin-mode button:disabled,
+body.admin-mode input:disabled,
+.admin-app-root button:disabled,
+.admin-app-root input:disabled {
+  cursor: not-allowed !important;
 }
 
 html {
@@ -110,7 +161,6 @@ html {
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
   overflow-x: clip;
 }
 
@@ -123,15 +173,12 @@ body {
   flex-direction: column;
   background-color: var(--color-bg-body);
   color: var(--color-text-main);
-  overflow-x: hidden;
   overflow-x: clip;
 }
 
 #root, main {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
-  overflow-x: clip;
   position: relative;
 }
 

@@ -97,7 +97,7 @@ export const Catalog: React.FC<CatalogProps> = ({
         {/* Grid de Produtos com layout coordenado sem remontar toda a grade */}
         {filteredProducts.length > 0 ? (
           <div className="products-grid">
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence initial={false}>
               {filteredProducts.map((product) => (
                 <ProductCard
                   key={product.id}

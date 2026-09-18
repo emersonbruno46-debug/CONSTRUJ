@@ -13,6 +13,7 @@
   align-items: center;
   justify-content: center;
   padding: 10px 0 24px;
+  touch-action: pan-y;
 }
 
 .store-swiper-cards {
@@ -20,6 +21,7 @@
   height: 390px;
   padding: 20px 0 40px !important;
   overflow: visible !important;
+  touch-action: pan-y;
 }
 
 @media (min-width: 480px) {
@@ -46,6 +48,7 @@
   cursor: grab;
   border: 2px solid rgba(255, 255, 255, 0.2);
   user-select: none;
+  touch-action: pan-y;
 }
 
 .store-cards-slide:active {
@@ -58,6 +61,7 @@
   object-fit: cover;
   display: block;
   transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+  touch-action: pan-y;
 }
 
 .store-cards-slide:hover .store-card-img {

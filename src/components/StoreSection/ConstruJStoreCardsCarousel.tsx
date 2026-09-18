@@ -42,6 +42,10 @@ export const ConstruJStoreCardsCarousel: React.FC<ConstruJStoreCardsCarouselProp
         effect="cards"
         grabCursor={true}
         loop={true}
+        touchReleaseOnEdges={true}
+        touchStartPreventDefault={false}
+        touchMoveStopPropagation={false}
+        passiveListeners={true}
         autoplay={
           autoplay
             ? {

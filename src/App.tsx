@@ -79,6 +79,15 @@ export const App: React.FC = () => {
     };
   }, []);
 
+  // Controla a classe 'admin-mode' no <body> para que os cursores nativos (seta, ponteiro) funcionem normalmente no painel
+  useEffect(() => {
+    if (isAdminRoute) {
+      document.body.classList.add('admin-mode');
+    } else {
+      document.body.classList.remove('admin-mode');
+    }
+  }, [isAdminRoute]);
+
   // Carrega e sincroniza dados do banco de dados persistente
   useEffect(() => {
     const loadData = async () => {

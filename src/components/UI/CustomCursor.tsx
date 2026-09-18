@@ -6,6 +6,13 @@ export const CustomCursor: React.FC = () => {
   const [isHoveringInteractive, setIsHoveringInteractive] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
 
+  // Verifica se está no painel administrativo
+  const isAdmin =
+    typeof window !== 'undefined' &&
+    (document.body.classList.contains('admin-mode') ||
+      window.location.pathname.includes('/admin') ||
+      window.location.hash.includes('admin'));
+
   // Posições reais do mouse
   const mousePos = useRef({ x: -100, y: -100 });
   // Posições do rastro com interpolação suave (lerp)
@@ -16,9 +23,9 @@ export const CustomCursor: React.FC = () => {
   const requestRef = useRef<number | null>(null);
 
   useEffect(() => {
-    // Detecta se é dispositivo touchscreen (não ativa em celulares/tablets)
+    // Detecta se é dispositivo touchscreen ou painel de administração
     const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-    if (isTouchDevice) return;
+    if (isTouchDevice || isAdmin) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       mousePos.current = { x: e.clientX, y: e.clientY };
@@ -93,7 +100,9 @@ export const CustomCursor: React.FC = () => {
       document.removeEventListener('mouseenter', handleMouseEnter);
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
     };
-  }, [isVisible]);
+  }, [isVisible, isAdmin]);
+
+  if (isAdmin) return null;
 
   return (
     <div
